@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <file>login.png</file>
+        <file>conference-128.png</file>
+        <file>conference-call-256.png</file>
+        <file>administrator-128.png</file>
+        <file>nurse-128.png</file>
+        <file>user-3-128.png</file>
+        <file>add-user-3-128.png</file>
+        <file>arrow-24-24.png</file>
+        <file>arrow-88-24.png</file>
+        <file>doctor-128.png</file>
+        <file>workers-128.png</file>
+        <file>statistics-128.png</file>
+    </qresource>
+</RCC>
