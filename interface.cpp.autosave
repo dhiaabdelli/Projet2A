@@ -469,3 +469,29 @@ void Interface::on_backBtn_2_clicked()
 {
     ui->Hometabs->setCurrentIndex(1);
 }
+
+void Interface::on_FourbtnUpdate_clicked()
+{
+    QString nom = ui->lineEdit_nomFe->text();
+    QString address = ui->lineEdit_AddessFe->text();
+    long tel = ui->lineEdit_TelFe->text().toInt();
+    QString ville = ui->lineEdit_VilleFe->text();
+    QString postal = ui->lineEdit_PostalFe->text();
+    QString id = ui->InfoFour->text();
+    
+    Fournisseur f;
+    if(f.rech(id)){
+        bool test = f.modifier(id,nom,address,tel,ville,postal);
+        if(test){
+            ui->tabFournisseur->setModel(tmpfournisseur.afficher());
+            QMessageBox::information(nullptr,QObject::tr("fournisseur modifier"),QObject::tr("click cancel to exit!"),QMessageBox::Cancel);
+        }
+     }else{
+            QMessageBox::information(nullptr,QObject::tr("fournisseur modifier"),QObject::tr("Error!"),QMessageBox::Cancel);
+     }
+}
+
+void Interface::on_pushButton_23_clicked()
+{
+    
+}

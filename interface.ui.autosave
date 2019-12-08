@@ -284,7 +284,7 @@ QPushButton:hover {
 }</string>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="HomePage">
     <widget class="QStackedWidget" name="Hometabs">
@@ -2290,7 +2290,7 @@ QLabel {
        <property name="geometry">
         <rect>
          <x>60</x>
-         <y>480</y>
+         <y>520</y>
          <width>321</width>
          <height>41</height>
         </rect>
@@ -2413,7 +2413,7 @@ QPushButton:hover{
        <property name="geometry">
         <rect>
          <x>460</x>
-         <y>480</y>
+         <y>520</y>
          <width>321</width>
          <height>41</height>
         </rect>
@@ -2524,6 +2524,36 @@ font-weight: 300;</string>
        </property>
        <property name="text">
         <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_23">
+       <property name="geometry">
+        <rect>
+         <x>850</x>
+         <y>520</y>
+         <width>321</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	font-weight: 600;
+	text-align: center;
+    vertical-align: middle;
+   	background-color: transparent;
+    border: 1px solid transparent;
+	color: #1494ff;
+    border-color: #1494ff;
+}
+
+QPushButton:hover {
+    background-color: #1494ff;
+	color: #ffffff;
+	font-weight: 600;
+}</string>
+       </property>
+       <property name="text">
+        <string>Supprimer</string>
        </property>
       </widget>
      </widget>

@@ -14,10 +14,6 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {    
     ui->setupUi(this);
-    QPixmap pix(":/conference-128.png");
-    int w = ui->login->width();
-    int h = ui->login->height();
-    ui->login->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
     ui->lineEdit_password->setValidator(new QRegExpValidator( QRegExp("[A-Za-z0-9_]{6,32}"), this ));
     ui->lineEdit_utilisateur->setValidator(new QRegExpValidator( QRegExp("[A-Za-z]{0,32}"), this ));
     QNetworkAccessManager nam;

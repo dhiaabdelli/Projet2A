@@ -86,6 +86,10 @@ private slots:
 
     void on_backBtn_2_clicked();
 
+    void on_FourbtnUpdate_clicked();
+    
+    void on_pushButton_23_clicked();
+    
 private:
     Ui::Interface *ui;
     QWidget* parent;
