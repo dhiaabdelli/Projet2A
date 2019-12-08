@@ -1,4 +1,4 @@
-QT       += core gui sql
+QT       += core gui sql network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -16,28 +16,27 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    administrateur.cpp \
     adminpersonnel.cpp \
     db.cpp \
+    interface.cpp \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
-    personnel.cpp \
-    service.cpp
+    service.cpp \
+    fournisseur.cpp
 
 HEADERS += \
-    administrateur.h \
     adminpersonnel.h \
     db.h \
+    interface.h \
     login.h \
     mainwindow.h \
-    personnel.h \
-    service.h
+    service.h \
+    fournisseur.h
 
 FORMS += \
-    administrateur.ui \
-    mainwindow.ui \
-    personnel.ui
+    interface.ui \
+    mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -46,3 +45,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     image.qrc
+
+DISTFILES +=

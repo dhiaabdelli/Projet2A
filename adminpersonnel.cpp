@@ -30,9 +30,34 @@ bool adminpersonnel::ajouter(){
     return query.exec();
 }
 
-QSqlQueryModel * adminpersonnel::trie(){
+QSqlQueryModel * adminpersonnel::trie(int num){
     QSqlQueryModel * model = new QSqlQueryModel();
-    model->setQuery("select utilisateur,nom,prenom,email,date_nass,tel from personnel order by date_nass;");
+    switch(num){
+        case 1:{
+            model->setQuery("select utilisateur,nom,prenom,email,date_nass,tel from personnel order by utilisateur;");
+            break;
+        }
+        case 2:{
+            model->setQuery("select utilisateur,nom,prenom,email,date_nass,tel from personnel order by nom;");
+            break;
+        }
+        case 3:{
+            model->setQuery("select utilisateur,nom,prenom,email,date_nass,tel from personnel order by prenom;");
+            break;
+        }
+        case 4:{
+            model->setQuery("select utilisateur,nom,prenom,email,date_nass,tel from personnel order by email;");
+            break;
+        }
+        case 5:{
+            model->setQuery("select utilisateur,nom,prenom,email,date_nass,tel from personnel order by date_nass;");
+            break;
+        }
+        case 6:{
+            model->setQuery("select utilisateur,nom,prenom,email,date_nass,tel from personnel order by tel;");
+            break;
+        }
+    }
     model->setHeaderData(0,Qt::Horizontal,QObject::tr("Identifiant "));
     model->setHeaderData(1,Qt::Horizontal,QObject::tr("Nom "));
     model->setHeaderData(2,Qt::Horizontal,QObject::tr("Prenom "));
@@ -54,12 +79,9 @@ QSqlQueryModel * adminpersonnel::afficher(){
   return model;
 }
 
-QSqlQueryModel * adminpersonnel::recherche(QString utilisateur){
-  /*QSqlQuery query;
-  query.prepare("select utilisateur,nom,prenom,email,date_nass,tel from personnel where utilisateur = :utilisateur;");
-  query.bindValue(":utilisateur",utilisateur);*/
+QSqlQueryModel * adminpersonnel::recherche(QString data){
   QSqlQueryModel * model = new QSqlQueryModel();
-  model->setQuery("select utilisateur,nom,prenom,email,date_nass,tel from personnel where utilisateur = '"+utilisateur+"';");
+  model->setQuery("select utilisateur,nom,prenom,email,date_nass,tel from personnel where utilisateur LIKE '"+data+"%' OR nom LIKE '"+data+"%' OR prenom LIKE '"+data+"%' OR email LIKE '"+data+"%' OR date_nass LIKE '"+data+"%' OR tel LIKE '"+data+"%';");
   model->setHeaderData(0,Qt::Horizontal,QObject::tr("Identifiant "));
   model->setHeaderData(1,Qt::Horizontal,QObject::tr("Nom "));
   model->setHeaderData(2,Qt::Horizontal,QObject::tr("Prenom "));
@@ -85,14 +107,26 @@ bool adminpersonnel::rech(QString x){
     return query.first();
 }
 
-bool adminpersonnel::modifier(QString a,QString b,QString c,QString d,QString e,int f){
+bool adminpersonnel::modifier(QString a,QString b,QString c,QString d,QString e,int f,QString g){
     QSqlQuery query;
-    query.prepare("update personnel set nom=:nom ,prenom=:prenom ,email=:email ,date_nass=:date_nass ,tel=:tel  where utilisateur = :utilisateur;");
+    query.prepare("update personnel set nom=:nom ,prenom=:prenom ,email=:email ,date_nass=:date_nass ,tel=:tel,password=:password where utilisateur = :utilisateur;");
     query.bindValue(":utilisateur", a);
     query.bindValue(":nom", b);
     query.bindValue(":prenom", c);
     query.bindValue(":email", d);
     query.bindValue(":date_nass", e);
     query.bindValue(":tel", f);
+    query.bindValue(":password", g);
     return query.exec();
+}
+
+QString adminpersonnel::total() {
+    QSqlQuery query;
+    query.prepare("select count(*) from personnel");
+    query.exec();
+
+    if(query.first())
+        return query.value(0).toString();
+    else
+        return "0";
 }

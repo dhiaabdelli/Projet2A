@@ -12,7 +12,7 @@ class personnel : public QDialog
     Q_OBJECT
 
 public:
-    explicit personnel(QWidget *parent = nullptr);
+    explicit personnel(QWidget *parent = nullptr, QString username = "" );
     ~personnel();
 
 private:

@@ -5,9 +5,10 @@
 #include <QSqlQuery>
 #include "login.h"
 #include <QRegExpValidator>
-#include "administrateur.h"
-#include "personnel.h"
-
+#include "interface.h"
+#include "mailing/SmtpMime"
+#include <QtWidgets>
+#include <QtNetwork>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -19,6 +20,16 @@ MainWindow::MainWindow(QWidget *parent)
     ui->login->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
     ui->lineEdit_password->setValidator(new QRegExpValidator( QRegExp("[A-Za-z0-9_]{6,32}"), this ));
     ui->lineEdit_utilisateur->setValidator(new QRegExpValidator( QRegExp("[A-Za-z]{0,32}"), this ));
+    QNetworkAccessManager nam;
+    QNetworkRequest req(QUrl("http://www.google.com"));
+    QNetworkReply* reply = nam.get(req);
+    QEventLoop loop;
+    connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    loop.exec();
+    if (reply->bytesAvailable())
+        QMessageBox::information(this, "Info", "You are connected to the internet :)");
+    else
+        QMessageBox::critical(this, "Info", "You are not connected to the internet :(");
 }
 
 MainWindow::~MainWindow()
@@ -31,25 +42,15 @@ void MainWindow::on_pushButton_clicked()
 {
         QString utilisateur = ui->lineEdit_utilisateur->text();
         QString password = ui->lineEdit_password->text();
-        login login(utilisateur,password);
+        login login(utilisateur,password,"");
         bool test=login.seconnect();
         if(test){
-
             this->hide();
-            switch(login.getType()){
-            case 0:{
-                personnel personnel;
-                personnel.setModal(true);
-                personnel.exec();
-                break;
-            }
-            case 1:{
-                administrateur administrateur;
-                administrateur.setModal(true);
-                administrateur.exec();
-                break;
-                }
-            }
+            Interface interface(this,login.getType(),login.getNom());
+            interface.setModal(true);
+            interface.exec();
+            password = "";
+            ui->lineEdit_password->setText("");
             //QMessageBox::information(nullptr,QObject::tr("Personnel ajouter"),QObject::tr("click cancel to exit!"),QMessageBox::Cancel);
         }else{
             ui->info->setStyleSheet( "QLabel { font-size: 9pt; color : red; }" );

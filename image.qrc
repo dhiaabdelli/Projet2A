@@ -12,5 +12,56 @@
         <file>doctor-128.png</file>
         <file>workers-128.png</file>
         <file>statistics-128.png</file>
+        <file>chat-4-128.png</file>
+        <file>user-24.png</file>
+        <file>logout-24.png</file>
+        <file>list-ingredients-24.png</file>
+        <file>contacts-128.png</file>
+        <file>clinic-128.png</file>
+        <file>icons/patient.png</file>
+        <file>icons/calendar.png</file>
+        <file>icons/waitingroom.png</file>
+        <file>icons/material.png</file>
+        <file>icons/fournisseur.png</file>
+        <file>icons/medicament.png</file>
+        <file>icons/menu/power.png</file>
+        <file>icons/menu/power-hover.png</file>
+        <file>icons/menu/chat.png</file>
+        <file>icons/menu/home.png</file>
+        <file>icons/menu/settings.png</file>
+        <file>icons/bloc.png</file>
+        <file>icons/room.png</file>
+        <file>icons/menu/administrator.png</file>
+        <file>icons/menu/arduino.png</file>
+        <file>icons/paramedical.png</file>
+        <file>icons/convention.png</file>
+        <file>icons/menu/admin/bar-chart-1.png</file>
+        <file>icons/menu/admin/bar-chart-2.png</file>
+        <file>icons/menu/admin/bar-chart-3.png</file>
+        <file>icons/menu/admin/bar-chart-4.png</file>
+        <file>icons/menu/admin/personnel/add-user.png</file>
+        <file>icons/menu/admin/personnel/add-user-hover.png</file>
+        <file>icons/menu/admin/personnel/search.png</file>
+        <file>icons/menu/admin/personnel/group.png</file>
+        <file>icons/menu/admin/personnel/new.png</file>
+        <file>icons/menu/admin/personnel/form/email.png</file>
+        <file>icons/menu/admin/personnel/form/phone.png</file>
+        <file>icons/menu/admin/personnel/form/key.png</file>
+        <file>icons/menu/admin/personnel/form/user.png</file>
+        <file>icons/menu/admin/personnel/form/calendar.png</file>
+        <file>icons/menu/admin/personnel/form/back.png</file>
+        <file>icons/menu/admin/personnel/form/back-hover.png</file>
+        <file>icons/menu/admin/plus.png</file>
+        <file>icons/menu/admin/service/form/clock.png</file>
+        <file>icons/menu/admin/service/form/money.png</file>
+        <file>icons/menu/admin/service/form/nurse.png</file>
+        <file>icons/menu/Home/Four/truck.png</file>
+        <file>icons/menu/Home/Four/truck2.png</file>
+        <file>icons/menu/Home/plus.png</file>
+        <file>icons/menu/Home/plus-hover.png</file>
+        <file>icons/menu/Home/Four/form/address.png</file>
+        <file>icons/menu/Home/Four/form/IconTruck.png</file>
     </qresource>
+    <qresource prefix="/pp"/>
+    <qresource prefix="/icons"/>
 </RCC>

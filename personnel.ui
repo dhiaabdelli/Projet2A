@@ -6,13 +6,421 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>911</width>
+    <height>542</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Personnel</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog{
+	background-color: #1c1e2f;
+	border :0;
+}
+
+#sidebar{
+	background-color: #222437;
+    background-clip: border-box;
+    box-shadow: 0 0 0 0 #181a27;
+}
+
+#header{
+	background-color: #222437;
+    background-clip: border-box;
+    border-top: 2px solid #383e5d;
+	border-bottom: 2px solid #383e5d;
+}
+
+#mainMenuLabel{
+	color: rgba(255, 255, 255, 0.7);
+	border : 1px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.13);
+    margin: 0 30px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 10px 0px 15px 0px;
+}
+
+</string>
+  </property>
+  <widget class="QLabel" name="header">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>911</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="sidebar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>50</y>
+     <width>81</width>
+     <height>491</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_14">
+   <property name="geometry">
+    <rect>
+     <x>870</x>
+     <y>0</y>
+     <width>41</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    padding: 12px 0 15px 0;
+    border-radius: 2px;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-origin: content;
+    background-image: url(&quot;:/logout-24.png&quot;);
+ }
+
+
+QPushButton:hover {
+  	background-color: #2e3657;
+	color: #ffffff;
+	font-weight: 500;
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnLeft">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>14</y>
+     <width>24</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    padding: 0px 0 -15px 0;
+    border-radius: 2px;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-origin: content;
+    background-image: url(&quot;:/arrow-24-24.png&quot;);
+ }
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnRight">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>14</y>
+     <width>24</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    padding: 0px 0 -15px 0;
+    border-radius: 2px;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-origin: content;
+    background-image: url(&quot;:/arrow-88-24.png&quot;);
+ }
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_28">
+   <property name="geometry">
+    <rect>
+     <x>626</x>
+     <y>12</y>
+     <width>47</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {
+    padding: 0px 0 -15px 0;
+    border-radius: 2px;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-origin: content;
+    background-image: url(&quot;:/user-24.png&quot;);
+ }
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="username">
+   <property name="geometry">
+    <rect>
+     <x>670</x>
+     <y>5</y>
+     <width>201</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {
+	color: #ffffff;
+	font-size: 13px;
+	font-weight: 500;
+	text-decoration: underline;
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnRDV">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>50</y>
+     <width>81</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+	font-weight: 500;
+	text-align: center;
+    vertical-align: middle;
+	background-color: transparent;
+	padding: 15px 30px 15px 70px;
+    color: #fff;
+	font-size: 11px;
+	padding-left: 25px;
+    padding-right: 25px;
+	border : 0;
+}
+
+QPushButton:hover {
+  	background-color: #2e3657;
+	color: #ffffff;
+	font-weight: 500;
+}
+QPushButton:pressed {
+    background-color: #ffffff;
+	color: #000000;
+	font-weight: 500;
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnPAT">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>140</y>
+     <width>81</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+	font-weight: 500;
+	text-align: center;
+    vertical-align: middle;
+	background-color: transparent;
+	padding: 15px 30px 15px 70px;
+    color: #fff;
+	font-size: 11px;
+	padding-left: 25px;
+    padding-right: 25px;
+	border : 0;
+}
+
+QPushButton:hover {
+  	background-color: #2e3657;
+	color: #ffffff;
+	font-weight: 500;
+}
+QPushButton:pressed {
+    background-color: #ffffff;
+	color: #000000;
+	font-weight: 500;
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnBloc">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>220</y>
+     <width>81</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+	font-weight: 500;
+	text-align: center;
+    vertical-align: middle;
+	background-color: transparent;
+	padding: 15px 30px 15px 70px;
+    color: #fff;
+	font-size: 11px;
+	padding-left: 25px;
+    padding-right: 25px;
+	border : 0;
+}
+
+QPushButton:hover {
+  	background-color: #2e3657;
+	color: #ffffff;
+	font-weight: 500;
+}
+QPushButton:pressed {
+    background-color: #ffffff;
+	color: #000000;
+	font-weight: 500;
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnPersonnel_4">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>300</y>
+     <width>81</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+	font-weight: 500;
+	text-align: center;
+    vertical-align: middle;
+	background-color: transparent;
+	padding: 15px 30px 15px 70px;
+    color: #fff;
+	font-size: 11px;
+	padding-left: 25px;
+    padding-right: 25px;
+	border : 0;
+}
+
+QPushButton:hover {
+  	background-color: #2e3657;
+	color: #ffffff;
+	font-weight: 500;
+}
+QPushButton:pressed {
+    background-color: #ffffff;
+	color: #000000;
+	font-weight: 500;
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnPersonnel_5">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>380</y>
+     <width>81</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+	font-weight: 500;
+	text-align: center;
+    vertical-align: middle;
+	background-color: transparent;
+	padding: 15px 30px 15px 70px;
+    color: #fff;
+	font-size: 11px;
+	padding-left: 25px;
+    padding-right: 25px;
+	border : 0;
+}
+
+QPushButton:hover {
+  	background-color: #2e3657;
+	color: #ffffff;
+	font-weight: 500;
+}
+QPushButton:pressed {
+    background-color: #ffffff;
+	color: #000000;
+	font-weight: 500;
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnPersonnel_6">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>460</y>
+     <width>81</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+	font-weight: 500;
+	text-align: center;
+    vertical-align: middle;
+	background-color: transparent;
+	padding: 15px 30px 15px 70px;
+    color: #fff;
+	font-size: 11px;
+	padding-left: 25px;
+    padding-right: 25px;
+	border : 0;
+}
+
+QPushButton:hover {
+  	background-color: #2e3657;
+	color: #ffffff;
+	font-weight: 500;
+}
+QPushButton:pressed {
+    background-color: #ffffff;
+	color: #000000;
+	font-weight: 500;
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

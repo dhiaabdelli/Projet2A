@@ -12,6 +12,7 @@ class adminpersonnel
 public:
     adminpersonnel();
     adminpersonnel(QString,QString,int,QString,QString,QString,QString,QString);
+    QString total();
     QString get_nom(){
         return nom;
     }
@@ -23,11 +24,11 @@ public:
     }
     bool ajouter();
     QSqlQueryModel * afficher();
-    QSqlQueryModel * trie();
+    QSqlQueryModel * trie(int);
     QSqlQueryModel * recherche(QString);
     bool supprimer(QString);
     bool rech(QString);
-    bool modifier(QString,QString,QString,QString,QString,int);
+    bool modifier(QString,QString,QString,QString,QString,int,QString);
 
 
 };
