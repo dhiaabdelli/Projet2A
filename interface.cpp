@@ -21,6 +21,7 @@ Interface::Interface(QWidget* parent,int type,QString nom) :
     ui->tabpersonnel->setModel(tmppersonnel.afficher());
     ui->tabservice->setModel(tmpservice.afficher());
     ui->tabFournisseur->setModel(tmpfournisseur.afficher());
+    ui->tabMaterial->setModel(tmpMaterial.afficher());
 
     ui->tabpersonnel->verticalHeader()->setVisible(false);
     ui->tabpersonnel->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -42,6 +43,14 @@ Interface::Interface(QWidget* parent,int type,QString nom) :
     ui->tabFournisseur->setShowGrid(false);
     ui->tabFournisseur->verticalHeader()->setSectionsClickable(true);
     ui->tabFournisseur->horizontalHeader()->setSectionsClickable(true);
+
+
+    ui->tabMaterial->verticalHeader()->setVisible(false);
+    ui->tabMaterial->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tabMaterial->setAlternatingRowColors(true);
+    ui->tabMaterial->setShowGrid(false);
+    ui->tabMaterial->verticalHeader()->setSectionsClickable(true);
+    ui->tabMaterial->horizontalHeader()->setSectionsClickable(true);
 
     adminpersonnel p;
     ui->personnelTotal->setText(p.total());
@@ -248,6 +257,7 @@ void Interface::on_btnHome_clicked()
 {
     this->setbtnEnable(ui->btnHome,btncurrent,"Home");
     ui->NavigationW->setCurrentIndex(0);
+    ui->Hometabs->setCurrentIndex(0);
 }
 
 void Interface::on_btnChat_clicked()
@@ -393,7 +403,7 @@ void Interface::on_btnBackEditService_clicked()
 
 void Interface::on_MaterialBtnG_clicked()
 {
-   // ui->Hometabs->setCurrentIndex(1);
+   ui->Hometabs->setCurrentIndex(4);
 }
 
 void Interface::on_FournisseurBtnG_clicked()
@@ -468,4 +478,101 @@ void Interface::on_tabFournisseur_activated(const QModelIndex &index)
 void Interface::on_backBtn_2_clicked()
 {
     ui->Hometabs->setCurrentIndex(1);
+}
+
+void Interface::on_FourbtnUpdate_clicked()
+{
+    QString nom = ui->lineEdit_nomFe->text();
+    QString address = ui->lineEdit_AddessFe->text();
+    long tel = ui->lineEdit_TelFe->text().toInt();
+    QString ville = ui->lineEdit_VilleFe->text();
+    QString postal = ui->lineEdit_PostalFe->text();
+    QString id = ui->InfoFour->text();
+    
+    Fournisseur f;
+    if(f.rech(id)){
+        bool test = f.modifier(id,nom,address,tel,ville,postal);
+        if(test){
+            ui->tabFournisseur->setModel(tmpfournisseur.afficher());
+            ui->Hometabs->setCurrentIndex(1);
+        }
+     }
+}
+
+
+void Interface::on_FourbtnDelete_clicked()
+{
+    Fournisseur f;
+    if(f.rech(ui->InfoFour->text())){
+      bool test=tmpfournisseur.supprimer(ui->InfoFour->text());
+      if(test){
+            ui->tabFournisseur->setModel(tmpfournisseur.afficher());
+            ui->Hometabs->setCurrentIndex(1);
+        }
+     }else{
+         ui->Hometabs->setCurrentIndex(1);
+     }
+}
+
+void Interface::on_btnBackHomeMat_clicked()
+{
+    ui->Hometabs->setCurrentIndex(0);
+}
+
+void Interface::on_lineEdit_5_textChanged(const QString &arg1)
+{
+    if(arg1 == ""){
+       ui->tabMaterial->setModel(tmpMaterial.afficher());
+    }else{
+        ui->tabMaterial->setModel(tmpMaterial.recherche(arg1));
+    }
+}
+
+void Interface::on_btnAddHomeMat_clicked()
+{
+    ui->Hometabs->setCurrentIndex(5);
+}
+
+void Interface::on_btnBackHomeMatAdd_clicked()
+{
+    ui->Hometabs->setCurrentIndex(4);
+}
+
+void Interface::on_BtnMatAdd_clicked()
+{
+    QString ref = ui->lineEdit_RefMat->text();
+    QString nom = ui->lineEdit_nomMat->text();
+    int quantite = ui->lineEdit_quantiteMat->text().toInt();
+    Materiel m(ref,nom,quantite);
+    bool test=m.ajouter();
+    if(test){
+        ui->tabMaterial->setModel(tmpMaterial.afficher());
+        ui->Hometabs->setCurrentIndex(4);
+    }
+}
+
+void Interface::on_tabMaterial_activated(const QModelIndex &index)
+{
+    QString val=ui->tabMaterial->model()->data(index).toString();
+
+    QSqlQuery query;
+    query.prepare("select nom,quantite from materiel where ref = :ref;");
+    query.bindValue(":ref",val);
+
+    if(query.exec())
+    {
+        if(query.first())
+        {
+            ui->lineEdit_nomMatE->setText(query.value(0).toString());
+            ui->lineEdit_quantiteMatE->setText(query.value(1).toString());
+            ui->InfoRefMat->setText(val);
+            ui->Hometabs->setCurrentIndex(6);
+         }
+
+     }
+}
+
+void Interface::on_btnBackHomeMatAdd_2_clicked()
+{
+    ui->Hometabs->setCurrentIndex(5);
 }

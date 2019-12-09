@@ -23,7 +23,8 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     service.cpp \
-    fournisseur.cpp
+    fournisseur.cpp \
+    materiel.cpp
 
 HEADERS += \
     adminpersonnel.h \
@@ -32,7 +33,8 @@ HEADERS += \
     login.h \
     mainwindow.h \
     service.h \
-    fournisseur.h
+    fournisseur.h \
+    materiel.h
 
 FORMS += \
     interface.ui \

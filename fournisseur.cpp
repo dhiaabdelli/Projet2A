@@ -63,10 +63,13 @@ bool Fournisseur::rech(QString id){
 }
 bool Fournisseur::modifier(QString id,QString nom,QString address,long tel,QString ville,QString code_p){
     QSqlQuery query;
-    query.prepare("update fournisseur set nom=:nom ,prenom=:prenom   where id = :id");
+    query.prepare("update fournisseur set nom=:nom ,tel=:tel ,address=:address ,ville=:ville ,code_p=:code_p   where id = :id");
     query.bindValue(":id", id);
     query.bindValue(":nom", nom);
     query.bindValue(":tel", QString::number(tel));
+    query.bindValue(":address", address);
+    query.bindValue(":ville", ville);
+    query.bindValue(":code_p", code_p);
 
     return query.exec();
 }

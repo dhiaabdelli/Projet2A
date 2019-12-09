@@ -284,7 +284,7 @@ QPushButton:hover {
 }</string>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="HomePage">
     <widget class="QStackedWidget" name="Hometabs">
@@ -2526,6 +2526,1031 @@ font-weight: 300;</string>
         <string/>
        </property>
       </widget>
+      <widget class="QPushButton" name="FourbtnDelete">
+       <property name="geometry">
+        <rect>
+         <x>850</x>
+         <y>480</y>
+         <width>321</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	font-weight: 600;
+	text-align: center;
+    vertical-align: middle;
+   	background-color: transparent;
+    border: 1px solid transparent;
+	color: #1494ff;
+    border-color: #1494ff;
+}
+
+QPushButton:hover {
+    background-color: #1494ff;
+	color: #ffffff;
+	font-weight: 600;
+}</string>
+       </property>
+       <property name="text">
+        <string>Supprimer</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="materielMain">
+      <widget class="QTableView" name="tabMaterial">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>350</y>
+         <width>1191</width>
+         <height>221</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+	line-height: 1;
+    color: #e9e6e6;
+    background-color: #2b2e4c;
+    background-clip: padding-box;
+	border-radius: 2px;	
+	border: 1px solid #414561;
+    font-weight: 400;
+	font-size: 16px;
+    padding: 0.875rem 1.375rem;
+	color: #ffffff;
+}
+
+QPushButton {
+	font-weight: 600;
+	text-align: center;
+    vertical-align: middle;
+   	background-color: transparent;
+    border: 1px solid transparent;
+	color: #6640b2;
+    border-color: #6640b2;
+}
+
+QPushButton:hover {
+    background-color: #6640b2;
+	color: #ffffff;
+	font-weight: 600;
+}
+QPushButton:pressed {
+    background-color: #6640b2;
+	color: #ffffff;
+	font-weight: 600;
+}
+
+
+QTableView{
+	background-color: transparent;
+	gridline-color: #1c2340;
+	color: #ffffff;
+	alternate-background-color: #1d1a36;
+	border : 1px solid #1c2340;
+}
+QTableView::item:focus
+{
+  	background-color: #2e3657;
+	font-weight: 500;
+}
+QTableView::item
+{
+   text-align: center;
+}
+
+QHeaderView {
+	background-color: #292443;
+ }
+QHeaderView::section {
+	spacing: 10px;
+ 	background-color: #292443;
+	color: #929292;
+	margin: 1px;
+	border: 0;
+ 	text-align: center;
+  	font-family: arial;
+	font-size: 12px;
+	padding: 8px 0px 5px 0px;
+ }
+
+QTableView QTableCornerButton::section {
+    background-color: #292443;
+}
+</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnAddHomeMat">
+       <property name="geometry">
+        <rect>
+         <x>1160</x>
+         <y>310</y>
+         <width>41</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	font-weight: 500;
+	text-align: center;
+    vertical-align: middle;
+	background-color: transparent;
+	padding: 5px 5px 5px 5px;
+    color: #fff;
+	font-size: 11px;
+	border : 0;
+	border-right: 3px solid transparent;
+ 	background-position: center top;
+    background-repeat: no-repeat;
+    background-origin: content;
+    background-image: url(&quot;:/icons/menu/Home/plus.png&quot;);
+}
+
+QPushButton:hover {
+	color: #ffffff;
+	font-weight: 500;
+	background-image: url(&quot;:/icons/menu/Home/plus-hover.png&quot;);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_68">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>70</y>
+         <width>251</width>
+         <height>91</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	border : 1px solid #1c2340;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_69">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>312</y>
+         <width>31</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+ 	background-position: center top;
+    background-repeat: no-repeat;
+    background-origin: content;
+    background-image: url(&quot;:/icons/menu/admin/personnel/search.png&quot;);
+}
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnBackHomeMat">
+       <property name="geometry">
+        <rect>
+         <x>1120</x>
+         <y>10</y>
+         <width>81</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	font-weight: 500;
+	text-align: center;
+    vertical-align: middle;
+	background-color: transparent;
+	padding: 0px 15px 15px 20px;
+    color: #fff;
+	font-size: 11px;
+	border : 0;
+	border-right: 3px solid transparent;
+ 	background-position: center top;
+    background-repeat: no-repeat;
+    background-origin: content;
+    background-image: url(&quot;:/icons/menu/admin/personnel/form/back.png&quot;);
+}
+
+QPushButton:hover{
+    background-image: url(&quot;:/icons/menu/admin/personnel/form/back-hover.png&quot;);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_70">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>180</y>
+         <width>251</width>
+         <height>91</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	border : 1px solid #1c2340;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="MaterialTotal">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>110</y>
+         <width>161</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	font-weight: 1000;
+	text-align: center;
+    vertical-align: middle;
+	background-color: transparent;
+    color: #fff;
+	font-size: 23px;
+	border : 0;
+ 	padding: 0px 0px 0px 10px;
+}</string>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_71">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>80</y>
+         <width>71</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	padding: 10px 15px 15px 0px;
+	text-align: center;
+    vertical-align: middle;
+	background-color: transparent;
+	border : 0;
+ 	background-position: center top;
+    background-repeat: no-repeat;
+    background-origin: content;
+    background-image: url(&quot;:/icons/menu/Home/Four/truck.png&quot;);
+}
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_72">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>220</y>
+         <width>161</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	font-weight: 1000;
+	text-align: center;
+    vertical-align: middle;
+	background-color: transparent;
+    color: #fff;
+	font-size: 23px;
+	border : 0;
+ 	padding: 0px 0px 0px 10px;
+}</string>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="statBox_3">
+       <property name="geometry">
+        <rect>
+         <x>310</x>
+         <y>70</y>
+         <width>891</width>
+         <height>201</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	border : 1px solid #1c2340;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_73">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>290</y>
+         <width>1191</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	border : 1px solid #1c2340;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_5">
+       <property name="geometry">
+        <rect>
+         <x>32</x>
+         <y>300</y>
+         <width>341</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+	border : 1px solid #1c2340;
+	padding: 5px 5px 5px 55px;
+	color: #ffffff;
+	border-radius: 10px;	
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_74">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>80</y>
+         <width>71</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	font-weight: 1000;
+	text-align: center;
+    vertical-align: middle;
+	background-color: transparent;
+    color: #fff;
+	font-size: 17px;
+	border : 0;
+ 	padding: 0px 0px 0px 10px;
+}</string>
+       </property>
+       <property name="text">
+        <string>Total</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_75">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>190</y>
+         <width>71</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	padding: 10px 15px 15px 0px;
+	text-align: center;
+    vertical-align: middle;
+	background-color: transparent;
+	border : 0;
+ 	background-position: center top;
+    background-repeat: no-repeat;
+    background-origin: content;
+    background-image: url(&quot;:/icons/menu/Home/Four/truck2.png&quot;);
+}
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_76">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>190</y>
+         <width>71</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	font-weight: 1000;
+	text-align: center;
+    vertical-align: middle;
+	background-color: transparent;
+    color: #fff;
+	font-size: 17px;
+	border : 0;
+ 	padding: 0px 0px 0px 10px;
+}</string>
+       </property>
+       <property name="text">
+        <string>New</string>
+       </property>
+      </widget>
+      <zorder>label_73</zorder>
+      <zorder>lineEdit_5</zorder>
+      <zorder>tabMaterial</zorder>
+      <zorder>btnAddHomeMat</zorder>
+      <zorder>label_68</zorder>
+      <zorder>label_69</zorder>
+      <zorder>btnBackHomeMat</zorder>
+      <zorder>label_70</zorder>
+      <zorder>MaterialTotal</zorder>
+      <zorder>label_71</zorder>
+      <zorder>label_72</zorder>
+      <zorder>statBox_3</zorder>
+      <zorder>label_74</zorder>
+      <zorder>label_75</zorder>
+      <zorder>label_76</zorder>
+     </widget>
+     <widget class="QWidget" name="materielAdd">
+      <property name="styleSheet">
+       <string notr="true">QLineEdit {
+	border : 1px solid #1c2340;
+	padding: 5px 5px 5px 5px;
+	color: #ffffff;
+}
+
+
+QLabel {
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: 800;
+}
+
+</string>
+      </property>
+      <widget class="QLabel" name="IconNurse_3">
+       <property name="geometry">
+        <rect>
+         <x>520</x>
+         <y>50</y>
+         <width>161</width>
+         <height>151</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	padding: 5px 1px 1px 1px;
+	text-align: center;
+    vertical-align: middle;
+	background-color: transparent;
+ 	background-position: center top;
+    background-repeat: no-repeat;
+    background-origin: content;
+    background-image: url(&quot;:/icons/menu/Home/Material/form/screen.png&quot;);
+}
+
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="Box_5">
+       <property name="geometry">
+        <rect>
+         <x>36</x>
+         <y>120</y>
+         <width>1161</width>
+         <height>331</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	border : 2px solid #1c2340;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_RefMat">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>230</y>
+         <width>491</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_nomMat">
+       <property name="geometry">
+        <rect>
+         <x>680</x>
+         <y>230</y>
+         <width>491</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="BtnFourVider_2">
+       <property name="geometry">
+        <rect>
+         <x>650</x>
+         <y>530</y>
+         <width>551</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	font-weight: 600;
+	text-align: center;
+    vertical-align: middle;
+   	background-color: transparent;
+    border: 1px solid transparent;
+	color: #1494ff;
+    border-color: #1494ff;
+}
+
+QPushButton:hover {
+    background-color: #1494ff;
+	color: #ffffff;
+	font-weight: 600;
+}</string>
+       </property>
+       <property name="text">
+        <string>Vider</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_quantiteMat">
+       <property name="geometry">
+        <rect>
+         <x>370</x>
+         <y>330</y>
+         <width>491</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnBackHomeMatAdd">
+       <property name="geometry">
+        <rect>
+         <x>1120</x>
+         <y>20</y>
+         <width>81</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	font-weight: 500;
+	text-align: center;
+    vertical-align: middle;
+	background-color: transparent;
+	padding: 0px 15px 15px 20px;
+    color: #fff;
+	font-size: 11px;
+	border : 0;
+	border-right: 3px solid transparent;
+ 	background-position: center top;
+    background-repeat: no-repeat;
+    background-origin: content;
+    background-image: url(&quot;:/icons/menu/admin/personnel/form/back.png&quot;);
+}
+
+QPushButton:hover{
+    background-image: url(&quot;:/icons/menu/admin/personnel/form/back-hover.png&quot;);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_77">
+       <property name="geometry">
+        <rect>
+         <x>680</x>
+         <y>200</y>
+         <width>131</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Nom</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_78">
+       <property name="geometry">
+        <rect>
+         <x>580</x>
+         <y>300</y>
+         <width>181</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Quantite</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_79">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>200</y>
+         <width>131</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Reference</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_80">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>10</y>
+         <width>491</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	color: #ffffff;
+	font-size: 16px;
+	font-weight: 700;
+}</string>
+       </property>
+       <property name="text">
+        <string>Ajouter une nouveau Fournisseur</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="BtnMatAdd">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>530</y>
+         <width>571</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	font-weight: 600;
+	text-align: center;
+    vertical-align: middle;
+   	background-color: transparent;
+    border: 1px solid transparent;
+	color: #1494ff;
+    border-color: #1494ff;
+}
+
+QPushButton:hover {
+    background-color: #1494ff;
+	color: #ffffff;
+	font-weight: 600;
+}</string>
+       </property>
+       <property name="text">
+        <string>Ajouter</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_81">
+       <property name="geometry">
+        <rect>
+         <x>520</x>
+         <y>110</y>
+         <width>161</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+         <weight>99</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	color: #ffffff;
+	font-size: 15px;
+	font-weight: 800;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <zorder>Box_5</zorder>
+      <zorder>lineEdit_RefMat</zorder>
+      <zorder>lineEdit_nomMat</zorder>
+      <zorder>BtnFourVider_2</zorder>
+      <zorder>lineEdit_quantiteMat</zorder>
+      <zorder>btnBackHomeMatAdd</zorder>
+      <zorder>label_77</zorder>
+      <zorder>label_78</zorder>
+      <zorder>label_79</zorder>
+      <zorder>label_80</zorder>
+      <zorder>BtnMatAdd</zorder>
+      <zorder>label_81</zorder>
+      <zorder>IconNurse_3</zorder>
+     </widget>
+     <widget class="QWidget" name="materielEdit">
+      <property name="styleSheet">
+       <string notr="true">QLineEdit {
+	border : 1px solid #1c2340;
+	padding: 5px 5px 5px 5px;
+	color: #ffffff;
+}
+
+
+QLabel {
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: 800;
+}
+
+</string>
+      </property>
+      <widget class="QLabel" name="IconNurse_4">
+       <property name="geometry">
+        <rect>
+         <x>520</x>
+         <y>50</y>
+         <width>161</width>
+         <height>151</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	padding: 5px 1px 1px 1px;
+	text-align: center;
+    vertical-align: middle;
+	background-color: transparent;
+ 	background-position: center top;
+    background-repeat: no-repeat;
+    background-origin: content;
+    background-image: url(&quot;:/icons/menu/Home/Material/form/screen.png&quot;);
+}
+
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_nomMatE">
+       <property name="geometry">
+        <rect>
+         <x>680</x>
+         <y>230</y>
+         <width>491</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="BtnFourVider_3">
+       <property name="geometry">
+        <rect>
+         <x>650</x>
+         <y>530</y>
+         <width>551</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	font-weight: 600;
+	text-align: center;
+    vertical-align: middle;
+   	background-color: transparent;
+    border: 1px solid transparent;
+	color: #1494ff;
+    border-color: #1494ff;
+}
+
+QPushButton:hover {
+    background-color: #1494ff;
+	color: #ffffff;
+	font-weight: 600;
+}</string>
+       </property>
+       <property name="text">
+        <string>Supprimer</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_quantiteMatE">
+       <property name="geometry">
+        <rect>
+         <x>370</x>
+         <y>330</y>
+         <width>491</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="Box_6">
+       <property name="geometry">
+        <rect>
+         <x>36</x>
+         <y>120</y>
+         <width>1161</width>
+         <height>331</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	border : 2px solid #1c2340;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_82">
+       <property name="geometry">
+        <rect>
+         <x>580</x>
+         <y>300</y>
+         <width>181</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Quantite</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="BtnMatAdd_2">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>530</y>
+         <width>571</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	font-weight: 600;
+	text-align: center;
+    vertical-align: middle;
+   	background-color: transparent;
+    border: 1px solid transparent;
+	color: #1494ff;
+    border-color: #1494ff;
+}
+
+QPushButton:hover {
+    background-color: #1494ff;
+	color: #ffffff;
+	font-weight: 600;
+}</string>
+       </property>
+       <property name="text">
+        <string>Mise a jour</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_83">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>200</y>
+         <width>131</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Reference</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnBackHomeMatAdd_2">
+       <property name="geometry">
+        <rect>
+         <x>1120</x>
+         <y>20</y>
+         <width>81</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	font-weight: 500;
+	text-align: center;
+    vertical-align: middle;
+	background-color: transparent;
+	padding: 0px 15px 15px 20px;
+    color: #fff;
+	font-size: 11px;
+	border : 0;
+	border-right: 3px solid transparent;
+ 	background-position: center top;
+    background-repeat: no-repeat;
+    background-origin: content;
+    background-image: url(&quot;:/icons/menu/admin/personnel/form/back.png&quot;);
+}
+
+QPushButton:hover{
+    background-image: url(&quot;:/icons/menu/admin/personnel/form/back-hover.png&quot;);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_84">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>10</y>
+         <width>491</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	color: #ffffff;
+	font-size: 16px;
+	font-weight: 700;
+}</string>
+       </property>
+       <property name="text">
+        <string>Information sur le material :</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_85">
+       <property name="geometry">
+        <rect>
+         <x>680</x>
+         <y>200</y>
+         <width>131</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Nom</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="InfoRefMat">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>230</y>
+         <width>471</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">padding: 5px 5px 5px 5px;
+border : 1px solid #1c2340;
+font-size: 12px;
+font-weight: 300;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <zorder>Box_6</zorder>
+      <zorder>IconNurse_4</zorder>
+      <zorder>lineEdit_nomMatE</zorder>
+      <zorder>BtnFourVider_3</zorder>
+      <zorder>lineEdit_quantiteMatE</zorder>
+      <zorder>label_82</zorder>
+      <zorder>BtnMatAdd_2</zorder>
+      <zorder>label_83</zorder>
+      <zorder>btnBackHomeMatAdd_2</zorder>
+      <zorder>label_84</zorder>
+      <zorder>label_85</zorder>
+      <zorder>InfoRefMat</zorder>
      </widget>
     </widget>
    </widget>

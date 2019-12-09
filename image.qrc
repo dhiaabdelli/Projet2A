@@ -43,6 +43,7 @@
         <file>icons/menu/Home/plus-hover.png</file>
         <file>icons/menu/Home/Four/form/address.png</file>
         <file>icons/menu/Home/Four/form/IconTruck.png</file>
+        <file>icons/menu/Home/Material/form/screen.png</file>
     </qresource>
     <qresource prefix="/pp"/>
     <qresource prefix="/icons"/>

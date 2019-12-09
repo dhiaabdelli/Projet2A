@@ -5,6 +5,7 @@
 #include "adminpersonnel.h"
 #include "service.h"
 #include "fournisseur.h"
+#include "materiel.h"
 // We'll need some regular expression magic in this code:
 #include <QRegExp>
 #include <QTcpSocket>
@@ -86,12 +87,31 @@ private slots:
 
     void on_backBtn_2_clicked();
 
+    void on_FourbtnUpdate_clicked();
+        
+    void on_FourbtnDelete_clicked();
+
+    void on_btnBackHomeMat_clicked();
+
+    void on_lineEdit_5_textChanged(const QString &arg1);
+
+    void on_btnAddHomeMat_clicked();
+
+    void on_btnBackHomeMatAdd_clicked();
+
+    void on_BtnMatAdd_clicked();
+
+    void on_tabMaterial_activated(const QModelIndex &index);
+
+    void on_btnBackHomeMatAdd_2_clicked();
+
 private:
     Ui::Interface *ui;
     QWidget* parent;
     adminpersonnel tmppersonnel;
     service tmpservice;
     Fournisseur tmpfournisseur;
+    Materiel tmpMaterial;
     QString pagetitle;
     QPushButton* btncurrent;
     QTcpSocket *socket;
