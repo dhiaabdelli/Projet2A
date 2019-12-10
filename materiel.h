@@ -17,7 +17,8 @@ class Materiel
     bool rech(QString);
     bool modifier(QString,QString,int);
     QSqlQueryModel *recherche(QString ref);
-
+    QSqlQueryModel * trie(int num);
+    QString total();
 private:
     QString ref,nom;
     int quantite;

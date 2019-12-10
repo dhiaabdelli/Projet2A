@@ -44,6 +44,8 @@
         <file>icons/menu/Home/Four/form/address.png</file>
         <file>icons/menu/Home/Four/form/IconTruck.png</file>
         <file>icons/menu/Home/Material/form/screen.png</file>
+        <file>icons/menu/Home/RDV/form/calendar.png</file>
+        <file>icons/menu/Home/Patient/form/iconpatient.png</file>
     </qresource>
     <qresource prefix="/pp"/>
     <qresource prefix="/icons"/>

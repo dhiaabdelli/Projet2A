@@ -18,9 +18,7 @@ public:
     bool rech(QString);
     bool modifier(QString,QString,QString,long,QString,QString);
     QSqlQueryModel * recherche(QString id);
-
-
-
+    QString total();
 
 private:
     QString id,nom,address,ville,code_p;

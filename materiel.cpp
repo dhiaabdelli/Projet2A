@@ -74,3 +74,36 @@ QSqlQueryModel * Materiel::recherche(QString data)
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("quantite"));
     return  model;
 }
+
+QSqlQueryModel * Materiel::trie(int num){
+    QSqlQueryModel * model = new QSqlQueryModel();
+    switch(num){
+        case 1:{
+        model->setQuery("select ref,nom,quantite from materiel order by ref DESC;");
+            break;
+        }
+        case 2:{
+        model->setQuery("select ref,nom,quantite from materiel order by nom DESC;");
+            break;
+        }
+        case 3:{
+            model->setQuery("select ref,nom,quantite from materiel order by quantite DESC;");
+            break;
+        }
+    }
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("Reference"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("Nom"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("quantite"));
+    return model;
+}
+
+QString Materiel::total() {
+    QSqlQuery query;
+    query.prepare("select count(*) from materiel");
+    query.exec();
+
+    if(query.first())
+        return query.value(0).toString();
+    else
+        return "0";
+}

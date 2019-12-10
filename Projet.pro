@@ -24,7 +24,11 @@ SOURCES += \
     mainwindow.cpp \
     service.cpp \
     fournisseur.cpp \
-    materiel.cpp
+    materiel.cpp \
+    rdv.cpp\
+    salle.cpp \
+    patient.cpp \
+    convention.cpp
 
 HEADERS += \
     adminpersonnel.h \
@@ -34,7 +38,11 @@ HEADERS += \
     mainwindow.h \
     service.h \
     fournisseur.h \
-    materiel.h
+    materiel.h \
+    rdv.h \
+    salle.h \
+    patient.h \
+    convention.h
 
 FORMS += \
     interface.ui \

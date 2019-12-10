@@ -6,6 +6,9 @@
 #include "service.h"
 #include "fournisseur.h"
 #include "materiel.h"
+#include "rdv.h"
+#include "patient.h"
+#include "convention.h"
 // We'll need some regular expression magic in this code:
 #include <QRegExp>
 #include <QTcpSocket>
@@ -40,6 +43,8 @@ private slots:
 
     void load();
 
+    void load2();
+
     void setbtnEnable(QPushButton*,QPushButton* &,QString);
 
     void on_btnChat_clicked();
@@ -56,7 +61,12 @@ private slots:
     void on_pushButton_14_clicked();
 
     void on_pushButton_15_clicked();
+
     void slot_table_clicked(int);
+    void slot_table_clickedservice(int);
+    void slot_table_clickedMaterial(int num);
+    void slot_table_clickedRDV(int num);
+    void slot_table_clickedPatient(int num);
     void connected(QString);
     void readyRead();
     void on_backBtn_clicked();
@@ -105,6 +115,50 @@ private slots:
 
     void on_btnBackHomeMatAdd_2_clicked();
 
+    void on_BtnMatEdit_clicked();
+
+    void on_BtnMatSup_clicked();
+
+    void on_lineEdit_3_textChanged(const QString &arg1);
+
+    void on_pushButton_12_clicked();
+
+    void on_RDVBtnG_clicked();
+
+    void on_btnBackHomeRDV_clicked();
+
+    void on_lineEdit_6_textChanged(const QString &arg1);
+
+    void on_btnAddHomeRDV_clicked();
+
+    void on_btnBackHomeRDV_3_clicked();
+
+    void on_BtnRDVAdd_clicked();
+
+    void on_tabRDV_activated(const QModelIndex &index);
+
+    void on_PatientBtnG_clicked();
+
+    void on_btnBackHomePatient_clicked();
+
+    void on_btnAddHomePatient_clicked();
+
+    void on_btnBackHomePatient_2_clicked();
+
+    void on_BtnPatienAdd_clicked();
+
+    void on_lineEdit_10_textChanged(const QString &arg1);
+
+    void on_tabPatient_activated(const QModelIndex &index);
+
+    void on_PatientbtnUpdate_clicked();
+
+    void on_btnBackHomePatient_3_clicked();
+
+    void on_PatientbtnDelete_clicked();
+
+    void on_RDVbtnUpdate_clicked();
+
 private:
     Ui::Interface *ui;
     QWidget* parent;
@@ -112,6 +166,8 @@ private:
     service tmpservice;
     Fournisseur tmpfournisseur;
     Materiel tmpMaterial;
+    RDV tmpRDV;
+    patient tmpPatient;
     QString pagetitle;
     QPushButton* btncurrent;
     QTcpSocket *socket;

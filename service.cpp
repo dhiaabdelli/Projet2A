@@ -22,9 +22,26 @@ bool service::ajouter(){
     return query.exec();
 }
 
-QSqlQueryModel * service::trie(){
+QSqlQueryModel * service::trie(int num){
     QSqlQueryModel * model = new QSqlQueryModel();
-    model->setQuery("select SERVICEID,NOM,NOMBREH,SALAIRE from service order by SALAIRE DESC;");
+    switch(num){
+        case 1:{
+        model->setQuery("select SERVICEID,NOM,NOMBREH,SALAIRE from service order by SERVICEID DESC;");
+            break;
+        }
+        case 2:{
+        model->setQuery("select SERVICEID,NOM,NOMBREH,SALAIRE from service order by NOM DESC;");
+            break;
+        }
+        case 3:{
+            model->setQuery("select SERVICEID,NOM,NOMBREH,SALAIRE from service order by NOMBREH DESC;");
+            break;
+        }
+        case 4:{
+            model->setQuery("select SERVICEID,NOM,NOMBREH,SALAIRE from service order by SALAIRE DESC;");
+            break;
+        }
+    }
     model->setHeaderData(0,Qt::Horizontal,QObject::tr("Id "));
     model->setHeaderData(1,Qt::Horizontal,QObject::tr("Nom "));
     model->setHeaderData(2,Qt::Horizontal,QObject::tr("Nombre de heures "));
@@ -42,9 +59,9 @@ QSqlQueryModel * service::afficher(){
     return model;
 }
 
-QSqlQueryModel * service::recherche(QString id){
+QSqlQueryModel * service::recherche(QString data){
   QSqlQueryModel * model = new QSqlQueryModel();
-  model->setQuery("select SERVICEID,NOM,NOMBREH,SALAIRE from service where SERVICEID = '"+id+"';");;
+  model->setQuery("select SERVICEID,NOM,NOMBREH,SALAIRE from service where SERVICEID LIKE '"+data+"%' OR NOM LIKE '"+data+"%' OR NOMBREH LIKE '"+data+"%' OR SALAIRE LIKE '"+data+"%';");
   model->setHeaderData(0,Qt::Horizontal,QObject::tr("Id "));
   model->setHeaderData(1,Qt::Horizontal,QObject::tr("Nom "));
   model->setHeaderData(2,Qt::Horizontal,QObject::tr("Nombre de heures "));
@@ -76,4 +93,12 @@ bool service::modifier(QString a,QString b,int c,int d){
     query.bindValue(":NOMBREH", c);
     query.bindValue(":SALAIRE", d);
     return query.exec();
+}
+
+QString service::getId(QString nom){
+    QSqlQuery query;
+    query.prepare("select SERVICEID from service where NOM = :NOM;");
+    query.bindValue(":NOM", nom);
+    query.exec();
+    return query.value(0).toString();
 }

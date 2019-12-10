@@ -22,6 +22,8 @@ Interface::Interface(QWidget* parent,int type,QString nom) :
     ui->tabservice->setModel(tmpservice.afficher());
     ui->tabFournisseur->setModel(tmpfournisseur.afficher());
     ui->tabMaterial->setModel(tmpMaterial.afficher());
+    ui->tabRDV->setModel(tmpRDV.afficher());
+    ui->tabPatient->setModel(tmpPatient.afficher());
 
     ui->tabpersonnel->verticalHeader()->setVisible(false);
     ui->tabpersonnel->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -52,8 +54,33 @@ Interface::Interface(QWidget* parent,int type,QString nom) :
     ui->tabMaterial->verticalHeader()->setSectionsClickable(true);
     ui->tabMaterial->horizontalHeader()->setSectionsClickable(true);
 
+
+    ui->tabRDV->verticalHeader()->setVisible(false);
+    ui->tabRDV->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tabRDV->setAlternatingRowColors(true);
+    ui->tabRDV->setShowGrid(false);
+    ui->tabRDV->verticalHeader()->setSectionsClickable(true);
+    ui->tabRDV->horizontalHeader()->setSectionsClickable(true);
+
+
+    ui->tabPatient->verticalHeader()->setVisible(false);
+    ui->tabPatient->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tabPatient->setAlternatingRowColors(true);
+    ui->tabPatient->setShowGrid(false);
+    ui->tabPatient->verticalHeader()->setSectionsClickable(true);
+    ui->tabPatient->horizontalHeader()->setSectionsClickable(true);
+
     adminpersonnel p;
+    Materiel m;
+    Fournisseur f;
+    RDV r;
+    patient pa;
+    ui->RDVTotal->setText(r.total());
     ui->personnelTotal->setText(p.total());
+    ui->MaterialTotal->setText(m.total());
+    ui->FournisseurTotal->setText(f.total());
+    ui->PatientTotal->setText(pa.total());
+
     ui->lineEdit_password->setValidator(new QRegExpValidator( QRegExp("[A-Za-z0-9_]{6,32}"), this ));
     ui->lineEdit_nom->setValidator(new QRegExpValidator( QRegExp("[A-Za-z]{0,32}"), this ));
     ui->lineEdit_prenom->setValidator(new QRegExpValidator( QRegExp("[A-Za-z]{0,32}"), this ));
@@ -89,12 +116,27 @@ Interface::Interface(QWidget* parent,int type,QString nom) :
     connect(ui->tabpersonnel->verticalHeader(), SIGNAL(sectionClicked(int)),this, SLOT(slot_table_clicked(int)));
     connect(ui->tabpersonnel->horizontalHeader(), SIGNAL(sectionClicked(int)),this, SLOT(slot_table_clicked(int)));
 
+    connect(ui->tabservice->verticalHeader(), SIGNAL(sectionClicked(int)),this, SLOT(slot_table_clickedservice(int)));
+    connect(ui->tabservice->horizontalHeader(), SIGNAL(sectionClicked(int)),this, SLOT(slot_table_clickedservice(int)));
+
+    connect(ui->tabMaterial->verticalHeader(), SIGNAL(sectionClicked(int)),this, SLOT(slot_table_clickedMaterial(int)));
+    connect(ui->tabMaterial->horizontalHeader(), SIGNAL(sectionClicked(int)),this, SLOT(slot_table_clickedMaterial(int)));
+
+    connect(ui->tabRDV->verticalHeader(), SIGNAL(sectionClicked(int)),this, SLOT(slot_table_clickedRDV(int)));
+    connect(ui->tabRDV->horizontalHeader(), SIGNAL(sectionClicked(int)),this, SLOT(slot_table_clickedRDV(int)));
+
+
+    connect(ui->tabPatient->verticalHeader(), SIGNAL(sectionClicked(int)),this, SLOT(slot_table_clickedPatient(int)));
+    connect(ui->tabPatient->horizontalHeader(), SIGNAL(sectionClicked(int)),this, SLOT(slot_table_clickedPatient(int)));
+
+
     socket = new QTcpSocket(this);
 
     connect(socket, SIGNAL(readyRead()), this, SLOT(readyRead()));
     connect(socket, SIGNAL(connected(nom)), this, SLOT(connected(nom)));
     socket->connectToHost("127.0.0.1", 4200);
     this->load();
+    this->load2();
 }
 
 // This function gets called when our socket has successfully connected to the chat
@@ -175,6 +217,85 @@ void Interface::slot_table_clicked(int num){
     }
 }
 
+void Interface::slot_table_clickedservice(int num){
+    switch(num){
+        case 0:{
+            ui->tabservice->setModel(tmpservice.trie(1));
+            break;
+        }
+        case 1:{
+            ui->tabservice->setModel(tmpservice.trie(2));
+            break;
+        }
+        case 2:{
+            ui->tabservice->setModel(tmpservice.trie(3));
+            break;
+        }
+        case 3:{
+            ui->tabservice->setModel(tmpservice.trie(4));
+            break;
+        }
+    }
+}
+
+void Interface::slot_table_clickedMaterial(int num){
+    switch(num){
+        case 0:{
+            ui->tabMaterial->setModel(tmpMaterial.trie(1));
+            break;
+        }
+        case 1:{
+            ui->tabMaterial->setModel(tmpMaterial.trie(2));
+            break;
+        }
+        case 2:{
+            ui->tabMaterial->setModel(tmpMaterial.trie(3));
+            break;
+        }
+    }
+}
+
+void Interface::slot_table_clickedRDV(int num){
+    switch(num){
+        case 0:{
+            ui->tabRDV->setModel(tmpRDV.trie(1));
+            break;
+        }
+        case 1:{
+            ui->tabRDV->setModel(tmpRDV.trie(2));
+            break;
+        }
+        case 2:{
+            ui->tabRDV->setModel(tmpRDV.trie(3));
+            break;
+        }
+    }
+}
+
+void Interface::slot_table_clickedPatient(int num){
+    switch(num){
+        case 0:{
+            ui->tabPatient->setModel(tmpPatient.trie(1));
+            break;
+        }
+        case 1:{
+            ui->tabPatient->setModel(tmpPatient.trie(2));
+            break;
+        }
+        case 2:{
+            ui->tabPatient->setModel(tmpPatient.trie(3));
+            break;
+        }
+        case 3:{
+            ui->tabPatient->setModel(tmpPatient.trie(4));
+            break;
+        }
+        case 4:{
+            ui->tabPatient->setModel(tmpPatient.trie(5));
+            break;
+        }
+    }
+}
 Interface::~Interface()
 {
     delete ui;
@@ -202,9 +323,7 @@ void Interface::on_pushButton_2_clicked()
     if(test){
        this->load();
        ui->tabservice->setModel(tmpservice.afficher());
-       QMessageBox::information(nullptr,QObject::tr("Service ajouter"),QObject::tr("click cancel to exit!"),QMessageBox::Cancel);
-    }else{
-       QMessageBox::information(nullptr,QObject::tr("Service ajouter"),QObject::tr("Error!"),QMessageBox::Cancel);
+       ui->ServicesTabs->setCurrentIndex(0);
     }
 }
 
@@ -231,21 +350,17 @@ void Interface::on_pushButton_13_clicked()
 
 void Interface::load(){
     ui->comboBoxserver->clear();
-    QSqlQuery query;
-    query.prepare("select SERVICEID,NOM from service");
-
-    if(query.exec())
-    {
-        while(query.next())
-        {
-            ui->comboBoxserver->addItem(query.value(0).toString());
-         }
-     }
+    QSqlQueryModel* model = new QSqlQueryModel();
+    model->setQuery("select NOM from service");
+    ui->comboBoxserver->setModel(model);
 }
 
-
-
-
+void Interface::load2(){
+    ui->combo_CinRDV->clear();
+    QSqlQueryModel* model = new QSqlQueryModel();
+    model->setQuery("select cin from patient");
+    ui->combo_CinRDV->setModel(model);
+}
 
 void Interface::on_btnAdmin_clicked()
 {
@@ -289,6 +404,7 @@ void Interface::on_pushButton_14_clicked()
 
 void Interface::on_pushButton_clicked()
 {
+    service s;
     QString nom = ui->lineEdit_nom->text();
     QString prenom = ui->lineEdit_prenom->text();
     QString utilisateur = ui->lineEdit_utilisateur->text();
@@ -296,7 +412,7 @@ void Interface::on_pushButton_clicked()
     QString email = ui->lineEdit_email->text();
     QString date_na = ui->lineEdit_date->text();
     QString password = ui->lineEdit_password->text();
-    QString serviceid = ui->comboBoxserver->currentText();
+    QString serviceid = s.getId(ui->comboBoxserver->currentText());
     adminpersonnel p(nom,prenom,Tel,email,date_na,utilisateur,password,serviceid);
     bool test=p.ajouter();
     if(test){
@@ -447,6 +563,7 @@ void Interface::on_BtnFourAdd_clicked()
     bool test=f.ajouter();
     if(test){
         ui->tabFournisseur->setModel(tmpfournisseur.afficher());
+        ui->FournisseurTotal->setText(f.total());
         ui->Hometabs->setCurrentIndex(1);
     }
 }
@@ -507,6 +624,7 @@ void Interface::on_FourbtnDelete_clicked()
       bool test=tmpfournisseur.supprimer(ui->InfoFour->text());
       if(test){
             ui->tabFournisseur->setModel(tmpfournisseur.afficher());
+            ui->FournisseurTotal->setText(f.total());
             ui->Hometabs->setCurrentIndex(1);
         }
      }else{
@@ -547,6 +665,7 @@ void Interface::on_BtnMatAdd_clicked()
     bool test=m.ajouter();
     if(test){
         ui->tabMaterial->setModel(tmpMaterial.afficher());
+        ui->MaterialTotal->setText(m.total());
         ui->Hometabs->setCurrentIndex(4);
     }
 }
@@ -574,5 +693,246 @@ void Interface::on_tabMaterial_activated(const QModelIndex &index)
 
 void Interface::on_btnBackHomeMatAdd_2_clicked()
 {
-    ui->Hometabs->setCurrentIndex(5);
+    ui->Hometabs->setCurrentIndex(4);
+}
+
+void Interface::on_BtnMatEdit_clicked()
+{
+    QString ref = ui->InfoRefMat->text();
+    QString nom = ui->lineEdit_nomMatE->text();
+    int quantite = ui->lineEdit_quantiteMatE->text().toInt();
+
+    Materiel m;
+    if(m.rech(ref)){
+        bool test = m.modifier(ref,nom,quantite);
+        if(test){
+            ui->tabMaterial->setModel(tmpMaterial.afficher());
+            ui->Hometabs->setCurrentIndex(4);
+        }
+     }
+}
+
+void Interface::on_BtnMatSup_clicked()
+{
+    Materiel m;
+    if(m.rech(ui->InfoRefMat->text())){
+      bool test=tmpMaterial.supprimer(ui->InfoRefMat->text());
+      if(test){
+            ui->tabMaterial->setModel(tmpMaterial.afficher());
+            ui->MaterialTotal->setText(m.total());
+            ui->Hometabs->setCurrentIndex(4);
+        }
+     }else{
+         ui->Hometabs->setCurrentIndex(4);
+     }
+}
+
+void Interface::on_lineEdit_3_textChanged(const QString &arg1)
+{
+    if(arg1 == ""){
+       ui->tabservice->setModel(tmpservice.afficher());
+    }else{
+        ui->tabservice->setModel(tmpservice.recherche(arg1));
+    }
+}
+
+void Interface::on_pushButton_12_clicked()
+{
+    service s;
+    if(s.rech(ui->InfoServ->text())){
+      bool test=tmpservice.supprimer(ui->InfoServ->text());
+      if(test){
+            ui->tabservice->setModel(tmpservice.afficher());
+            ui->ServicesTabs->setCurrentIndex(0);
+        }
+     }else{
+         ui->ServicesTabs->setCurrentIndex(0);
+     }
+}
+
+void Interface::on_RDVBtnG_clicked()
+{
+    ui->Hometabs->setCurrentIndex(7);
+}
+
+void Interface::on_btnBackHomeRDV_clicked()
+{
+    ui->Hometabs->setCurrentIndex(0);
+}
+
+void Interface::on_lineEdit_6_textChanged(const QString &arg1)
+{
+    if(arg1 == ""){
+       ui->tabRDV->setModel(tmpRDV.afficher());
+    }else{
+        ui->tabRDV->setModel(tmpRDV.recherche(arg1));
+    }
+}
+
+void Interface::on_btnAddHomeRDV_clicked()
+{
+    ui->Hometabs->setCurrentIndex(8);
+}
+
+void Interface::on_btnBackHomeRDV_3_clicked()
+{
+    ui->Hometabs->setCurrentIndex(7);
+}
+
+void Interface::on_BtnRDVAdd_clicked()
+{
+    QString id = ui->lineEdit_IDRDV->text();
+    QString date = ui->lineEdit_DateRDV->text();
+    QString cin = ui->combo_CinRDV->currentText();
+    RDV r(id,date,cin);
+    bool test=r.ajouter();
+    if(test){
+        ui->tabRDV->setModel(tmpRDV.afficher());
+        ui->RDVTotal->setText(r.total());
+        ui->Hometabs->setCurrentIndex(7);
+    }
+}
+
+void Interface::on_tabRDV_activated(const QModelIndex &index)
+{
+    QString val=ui->tabRDV->model()->data(index).toString();
+
+    QSqlQuery query;
+    query.prepare("select id,cin,date_rdv from Rendezvous where id = :id;");
+    query.bindValue(":id",val);
+
+    if(query.exec())
+    {
+        if(query.first())
+        {
+              ui->lineEdit_DateRDV_2->setText(query.value(2).toString());
+              ui->InfoRDVPat->setText(query.value(1).toString());
+              ui->InfoRDVId->setText(val);
+              ui->Hometabs->setCurrentIndex(9);
+        }
+
+     }
+}
+
+void Interface::on_PatientBtnG_clicked()
+{
+    ui->Hometabs->setCurrentIndex(10);
+}
+
+void Interface::on_btnBackHomePatient_clicked()
+{
+    ui->Hometabs->setCurrentIndex(0);
+}
+
+void Interface::on_btnAddHomePatient_clicked()
+{
+    ui->Hometabs->setCurrentIndex(11);
+}
+
+void Interface::on_btnBackHomePatient_2_clicked()
+{
+    ui->Hometabs->setCurrentIndex(10);
+}
+
+void Interface::on_BtnPatienAdd_clicked()
+{
+    QString cin = ui->lineEdit_cin->text();
+    QString nom = ui->lineEdit_nom_4->text();
+    QString prenom = ui->lineEdit_prenom_3->text();
+    QString tel = ui->lineEdit_email_2->text();
+    QString email = ui->lineEdit_tel_5->text();
+    patient pa(cin,nom,prenom,tel,email);
+    bool test=pa.ajouter();
+    if(test){
+        ui->tabPatient->setModel(tmpPatient.afficher());
+        ui->MaterialTotal->setText(pa.total());
+        ui->Hometabs->setCurrentIndex(10);
+    }
+}
+
+
+void Interface::on_lineEdit_10_textChanged(const QString &arg1)
+{
+    if(arg1 == ""){
+       ui->tabPatient->setModel(tmpPatient.afficher());
+    }else{
+        ui->tabPatient->setModel(tmpPatient.recherche(arg1));
+    }
+}
+
+void Interface::on_tabPatient_activated(const QModelIndex &index)
+{
+    QString val=ui->tabPatient->model()->data(index).toString();
+
+    QSqlQuery query;
+    query.prepare("select nom,prenom,tel,email from patient where cin = :cin;");
+    query.bindValue(":cin",val);
+
+    if(query.exec())
+    {
+        if(query.first())
+        {
+              ui->lineEdit_nom_5->setText(query.value(0).toString());
+              ui->lineEdit_prenom_4->setText(query.value(1).toString());
+              ui->lineEdit_email_3->setText(query.value(3).toString());
+              ui->lineEdit_tel_6->setText(query.value(2).toString());
+              ui->InfoPatient->setText(val);
+              ui->Hometabs->setCurrentIndex(12);
+        }
+
+     }
+}
+
+void Interface::on_PatientbtnUpdate_clicked()
+{
+    QString nom = ui->lineEdit_nom_5->text();
+    QString prenom = ui->lineEdit_prenom_4->text();
+    QString tel = ui->lineEdit_tel_6->text();
+    QString email = ui->lineEdit_email_3->text();
+    QString cin = ui->InfoPatient->text();
+
+    patient pa;
+    if(pa.rech(cin)){
+        bool test = pa.modifier(cin,nom,prenom,tel,email);
+        if(test){
+            ui->tabPatient->setModel(tmpPatient.afficher());
+            ui->Hometabs->setCurrentIndex(10);
+        }
+     }
+}
+
+void Interface::on_btnBackHomePatient_3_clicked()
+{
+    ui->Hometabs->setCurrentIndex(10);
+}
+
+void Interface::on_PatientbtnDelete_clicked()
+{
+    patient pa;
+    if(pa.rech(ui->InfoPatient->text())){
+      bool test=tmpPatient.supprimer(ui->InfoPatient->text());
+      if(test){
+            ui->tabPatient->setModel(tmpPatient.afficher());
+            ui->PatientTotal->setText(pa.total());
+            ui->Hometabs->setCurrentIndex(10);
+        }
+     }else{
+         ui->Hometabs->setCurrentIndex(10);
+     }
+}
+
+void Interface::on_RDVbtnUpdate_clicked()
+{
+    QString id = ui->InfoRDVId->text();
+    QString date = ui->lineEdit_DateRDV_2->text();
+    QString cin = ui->InfoRDVPat->text();
+
+    RDV r;
+    if(r.rech(id)){
+        bool test = r.modifier(id,cin,date);
+        if(test){
+            ui->tabRDV->setModel(tmpRDV.afficher());
+            ui->Hometabs->setCurrentIndex(7);
+        }
+     }
 }

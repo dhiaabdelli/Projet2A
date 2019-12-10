@@ -85,3 +85,14 @@ QSqlQueryModel * Fournisseur::recherche(QString data)
     model->setHeaderData(5, Qt::Horizontal, QObject::tr("Code Postal"));
     return model;
 }
+
+QString Fournisseur::total() {
+    QSqlQuery query;
+    query.prepare("select count(*) from fournisseur");
+    query.exec();
+
+    if(query.first())
+        return query.value(0).toString();
+    else
+        return "0";
+}
