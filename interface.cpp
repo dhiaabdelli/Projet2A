@@ -90,6 +90,7 @@ Interface::Interface(QWidget* parent,int type,QString nom) :
     ui->FournisseurTotal->setText(f.total());
     ui->PatientTotal->setText(pa.total());
     ui->ConventionTotal->setText(c.total());
+
     ui->lineEdit_password->setValidator(new QRegExpValidator( QRegExp("[A-Za-z0-9_]{6,32}"), this ));
     ui->lineEdit_nom->setValidator(new QRegExpValidator( QRegExp("[A-Za-z]{0,32}"), this ));
     ui->lineEdit_prenom->setValidator(new QRegExpValidator( QRegExp("[A-Za-z]{0,32}"), this ));
@@ -138,6 +139,9 @@ Interface::Interface(QWidget* parent,int type,QString nom) :
     connect(ui->tabPatient->verticalHeader(), SIGNAL(sectionClicked(int)),this, SLOT(slot_table_clickedPatient(int)));
     connect(ui->tabPatient->horizontalHeader(), SIGNAL(sectionClicked(int)),this, SLOT(slot_table_clickedPatient(int)));
 
+    connect(ui->tabConvention->verticalHeader(), SIGNAL(sectionClicked(int)),this, SLOT(slot_table_clickedConvention(int)));
+    connect(ui->tabConvention->horizontalHeader(), SIGNAL(sectionClicked(int)),this, SLOT(slot_table_clickedConvention(int)));
+
 
     socket = new QTcpSocket(this);
 
@@ -146,6 +150,7 @@ Interface::Interface(QWidget* parent,int type,QString nom) :
     socket->connectToHost("127.0.0.1", 4200);
     this->load();
     this->load2();
+    this->load3();
 }
 
 // This function gets called when our socket has successfully connected to the chat
@@ -305,6 +310,31 @@ void Interface::slot_table_clickedPatient(int num){
         }
     }
 }
+
+void Interface::slot_table_clickedConvention(int num){
+    switch(num){
+        case 0:{
+            ui->tabConvention->setModel(tmpConvention.trie(1));
+            break;
+        }
+        case 1:{
+            ui->tabConvention->setModel(tmpConvention.trie(2));
+            break;
+        }
+        case 2:{
+            ui->tabConvention->setModel(tmpConvention.trie(3));
+            break;
+        }
+        case 3:{
+            ui->tabConvention->setModel(tmpConvention.trie(4));
+            break;
+        }
+        case 4:{
+            ui->tabConvention->setModel(tmpConvention.trie(5));
+            break;
+        }
+    }
+}
 Interface::~Interface()
 {
     delete ui;
@@ -371,6 +401,12 @@ void Interface::load2(){
     ui->combo_CinRDV->setModel(model);
 }
 
+void Interface::load3(){
+    ui->combo_IDFour->clear();
+    QSqlQueryModel* model = new QSqlQueryModel();
+    model->setQuery("select nom from fournisseur");
+    ui->combo_IDFour->setModel(model);
+}
 void Interface::on_btnAdmin_clicked()
 {
     this->setbtnEnable(ui->btnAdmin,btncurrent,"Administration");
@@ -963,4 +999,81 @@ void Interface::on_btnBackHomePatient_4_clicked()
 void Interface::on_btnAddHomeRDV_3_clicked()
 {
     ui->Hometabs->setCurrentIndex(14);
+}
+
+void Interface::on_BtnConventionAdd_clicked()
+{
+    QString id = ui->lineEdit_IdConv->text();
+    QString idfour = ui->combo_IDFour->currentText();
+    QString date_d = ui->lineEdit_date_3->text();
+    QString date_f = ui->lineEdit_date_4->text();
+    QString desc = ui->ConventionDesc->toPlainText();
+    convention c(id,idfour,date_d,date_f,desc);
+    bool test=c.ajouter();
+    if(test){
+        ui->tabConvention->setModel(tmpConvention.afficher());
+        ui->ConventionTotal->setText(c.total());
+        ui->Hometabs->setCurrentIndex(13);
+    }
+}
+
+void Interface::on_tabConvention_activated(const QModelIndex &index)
+{
+    QString val=ui->tabConvention->model()->data(index).toString();
+
+    QSqlQuery query;
+    query.prepare("select idfour,date_d,date_f,des from convention where id = :id;");
+    query.bindValue(":id",val);
+
+    if(query.exec())
+    {
+        if(query.first())
+        {
+              ui->lineEdit_date_6->setText(query.value(1).toString());
+              ui->ConventionDesc_2->setText(query.value(3).toString());
+              ui->lineEdit_date_5->setText(query.value(2).toString());
+              ui->InfoConvetionIDF->setText(query.value(0).toString());
+              ui->InfoConvetionID->setText(val);
+              ui->Hometabs->setCurrentIndex(15);
+        }
+
+     }
+}
+
+void Interface::on_ConvbtnUpdate_clicked()
+{
+    QString id = ui->InfoConvetionID->text();
+    QString idfour = ui->InfoConvetionIDF->text();
+    QString date_d = ui->lineEdit_date_6->text();
+    QString date_f = ui->lineEdit_date_5->text();
+    QString desc = ui->ConventionDesc_2->toPlainText();
+
+    convention c;
+    if(c.rech(id)){
+        bool test = c.modifier(id,idfour,date_d,date_f,desc);
+        if(test){
+            ui->tabConvention->setModel(tmpConvention.afficher());
+            ui->Hometabs->setCurrentIndex(13);
+        }
+     }
+}
+
+void Interface::on_btnBackHomeConvention_clicked()
+{
+    ui->Hometabs->setCurrentIndex(13);
+}
+
+void Interface::on_ConvbtnDelete_clicked()
+{
+    convention c;
+    if(c.rech(ui->InfoConvetionID->text())){
+      bool test=tmpConvention.supprimer(ui->InfoConvetionID->text());
+      if(test){
+            ui->tabConvention->setModel(tmpConvention.afficher());
+            ui->ConventionTotal->setText(c.total());
+            ui->Hometabs->setCurrentIndex(13);
+        }
+     }else{
+         ui->Hometabs->setCurrentIndex(13);
+     }
 }

@@ -45,27 +45,27 @@ QSqlQueryModel * convention::afficher()
     return model;
 }
 
-bool convention::supprimer(QString ref)
+bool convention::supprimer(QString id)
 {
 QSqlQuery query;
-query.prepare("Delete from convention where ref = :ref ");
-query.bindValue(":ref", ref);
+query.prepare("Delete from convention where id = :id ");
+query.bindValue(":id", id);
 return    query.exec();
 }
-bool convention::rech(QString ref){
+bool convention::rech(QString id){
     QSqlQuery query;
-    query.prepare("select * from convention where ref = :ref");
-    query.bindValue(":ref", ref);
+    query.prepare("select * from convention where id = :id");
+    query.bindValue(":id", id);
     return query.exec();
 }
 bool convention::modifier(QString id,QString idfour,QString date_d,QString date_f,QString des){
     QSqlQuery query;
-    query.prepare("update convention set date_d=:date_d ,date_d=:date_d, des=:des   where id = :id and idfour = :idfour;");
-    query.bindValue(":id", id);
-    query.bindValue(":idfour", idfour);
-    query.bindValue(":date_d", date_d);
-    query.bindValue(":date_f", date_f);
-    query.bindValue(":des", des);
+    query.prepare("update convention set date_d = :date_d, date_f=:date_f, des=:des where id = :id AND idfour = :idfour;");
+    query.bindValue(":id",id);
+    query.bindValue(":idfour",idfour);
+    query.bindValue(":date_d",date_d);
+    query.bindValue(":date_f",date_f);
+    query.bindValue(":des",des);
     return query.exec();
 }
 QSqlQueryModel * convention::recherche(QString data)

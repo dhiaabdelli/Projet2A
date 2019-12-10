@@ -453,7 +453,7 @@ QPushButton:hover {
        <property name="geometry">
         <rect>
          <x>980</x>
-         <y>520</y>
+         <y>530</y>
          <width>201</width>
          <height>31</height>
         </rect>
@@ -897,7 +897,7 @@ QPushButton:hover {
        <property name="geometry">
         <rect>
          <x>260</x>
-         <y>520</y>
+         <y>530</y>
          <width>201</width>
          <height>31</height>
         </rect>
@@ -1254,7 +1254,7 @@ QPushButton:hover {
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>520</y>
+         <y>530</y>
          <width>201</width>
          <height>31</height>
         </rect>
@@ -6457,7 +6457,38 @@ QTableView QTableCornerButton::section {
       <zorder>tabConvention</zorder>
      </widget>
      <widget class="QWidget" name="ConventionAdd">
-      <widget class="QPushButton" name="BtnPatienAdd_2">
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: 800;
+}
+
+QLineEdit {
+	border : 1px solid #1c2340;
+	padding: 5px 5px 5px 5px;
+	color: #ffffff;
+}
+
+QTextEdit {
+	border : 1px solid #1c2340;
+	padding: 5px 5px 5px 5px;
+	color: #ffffff;
+}
+
+QLabel#IconDate_5,QLabel#IconDate_6 {
+	border : 1px solid #1c2340;
+	padding: 5px 1px 1px 1px;
+	text-align: center;
+    vertical-align: middle;
+	background-color: transparent;
+ 	background-position: center top;
+    background-repeat: no-repeat;
+    background-origin: content;
+    background-image: url(&quot;:/icons/menu/admin/personnel/form/calendar.png&quot;);
+}</string>
+      </property>
+      <widget class="QPushButton" name="BtnConventionAdd">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -6487,7 +6518,7 @@ QPushButton:hover {
         <string>Ajouter</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="BtnPatienVider_2">
+      <widget class="QPushButton" name="BtnConventionVider">
        <property name="geometry">
         <rect>
          <x>640</x>
@@ -6643,15 +6674,597 @@ QPushButton:hover{
         <string/>
        </property>
       </widget>
+      <widget class="QLineEdit" name="lineEdit_date_3">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>290</y>
+         <width>451</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_IdConv">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>210</y>
+         <width>451</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_233">
+       <property name="geometry">
+        <rect>
+         <x>660</x>
+         <y>180</y>
+         <width>131</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>ID Fournisseur</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_234">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>260</y>
+         <width>141</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Date de Debut</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_235">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>180</y>
+         <width>81</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Identifiant</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="IconDate_5">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>290</y>
+         <width>41</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="combo_IDFour">
+       <property name="geometry">
+        <rect>
+         <x>660</x>
+         <y>210</y>
+         <width>491</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+	border : 1px solid #1c2340;</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_236">
+       <property name="geometry">
+        <rect>
+         <x>660</x>
+         <y>260</y>
+         <width>141</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Date de Debut</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="IconDate_6">
+       <property name="geometry">
+        <rect>
+         <x>660</x>
+         <y>290</y>
+         <width>41</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_date_4">
+       <property name="geometry">
+        <rect>
+         <x>700</x>
+         <y>290</y>
+         <width>451</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QTextEdit" name="ConventionDesc">
+       <property name="geometry">
+        <rect>
+         <x>53</x>
+         <y>370</y>
+         <width>1091</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="html">
+        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_237">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>340</y>
+         <width>141</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Description</string>
+       </property>
+      </widget>
       <zorder>Box_16</zorder>
       <zorder>label_232</zorder>
-      <zorder>BtnPatienAdd_2</zorder>
-      <zorder>BtnPatienVider_2</zorder>
+      <zorder>BtnConventionAdd</zorder>
+      <zorder>BtnConventionVider</zorder>
       <zorder>IconPatient_3</zorder>
       <zorder>btnBackHomePatient_4</zorder>
       <zorder>label_231</zorder>
+      <zorder>lineEdit_date_3</zorder>
+      <zorder>lineEdit_IdConv</zorder>
+      <zorder>label_233</zorder>
+      <zorder>label_234</zorder>
+      <zorder>label_235</zorder>
+      <zorder>IconDate_5</zorder>
+      <zorder>combo_IDFour</zorder>
+      <zorder>label_236</zorder>
+      <zorder>IconDate_6</zorder>
+      <zorder>lineEdit_date_4</zorder>
+      <zorder>ConventionDesc</zorder>
+      <zorder>label_237</zorder>
      </widget>
-     <widget class="QWidget" name="ConventionEdit"/>
+     <widget class="QWidget" name="ConventionEdit">
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: 800;
+}
+
+QLineEdit {
+	border : 1px solid #1c2340;
+	padding: 5px 5px 5px 5px;
+	color: #ffffff;
+}
+
+QTextEdit {
+	border : 1px solid #1c2340;
+	padding: 5px 5px 5px 5px;
+	color: #ffffff;
+}
+
+QLabel#IconDate_7,QLabel#IconDate_8 {
+	border : 1px solid #1c2340;
+	padding: 5px 1px 1px 1px;
+	text-align: center;
+    vertical-align: middle;
+	background-color: transparent;
+ 	background-position: center top;
+    background-repeat: no-repeat;
+    background-origin: content;
+    background-image: url(&quot;:/icons/menu/admin/personnel/form/calendar.png&quot;);
+}</string>
+      </property>
+      <widget class="QLabel" name="label_238">
+       <property name="geometry">
+        <rect>
+         <x>660</x>
+         <y>260</y>
+         <width>141</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Date de Debut</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="IconDate_7">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>290</y>
+         <width>41</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="Box_17">
+       <property name="geometry">
+        <rect>
+         <x>26</x>
+         <y>120</y>
+         <width>1161</width>
+         <height>331</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	border : 2px solid #1c2340;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_239">
+       <property name="geometry">
+        <rect>
+         <x>510</x>
+         <y>110</y>
+         <width>161</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+         <weight>99</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	color: #ffffff;
+	font-size: 15px;
+	font-weight: 800;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_240">
+       <property name="geometry">
+        <rect>
+         <x>660</x>
+         <y>180</y>
+         <width>131</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>ID Fournisseur</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_date_5">
+       <property name="geometry">
+        <rect>
+         <x>700</x>
+         <y>290</y>
+         <width>451</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_241">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>180</y>
+         <width>81</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Identifiant</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_242">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>260</y>
+         <width>141</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Date de Debut</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="IconDate_8">
+       <property name="geometry">
+        <rect>
+         <x>660</x>
+         <y>290</y>
+         <width>41</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnBackHomeConvention">
+       <property name="geometry">
+        <rect>
+         <x>1110</x>
+         <y>20</y>
+         <width>81</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	font-weight: 500;
+	text-align: center;
+    vertical-align: middle;
+	background-color: transparent;
+	padding: 0px 15px 15px 20px;
+    color: #fff;
+	font-size: 11px;
+	border : 0;
+	border-right: 3px solid transparent;
+ 	background-position: center top;
+    background-repeat: no-repeat;
+    background-origin: content;
+    background-image: url(&quot;:/icons/menu/admin/personnel/form/back.png&quot;);
+}
+
+QPushButton:hover{
+    background-image: url(&quot;:/icons/menu/admin/personnel/form/back-hover.png&quot;);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_243">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>340</y>
+         <width>141</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Description</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_244">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>10</y>
+         <width>491</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	color: #ffffff;
+	font-size: 16px;
+	font-weight: 700;
+}</string>
+       </property>
+       <property name="text">
+        <string>Ajouter une nouvelle Convention</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_date_6">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>290</y>
+         <width>451</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="IconPatient_4">
+       <property name="geometry">
+        <rect>
+         <x>510</x>
+         <y>40</y>
+         <width>161</width>
+         <height>151</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	padding: 5px 1px 1px 1px;
+	text-align: center;
+    vertical-align: middle;
+	background-color: transparent;
+ 	background-position: center top;
+    background-repeat: no-repeat;
+    background-origin: content;
+    background-image: url(&quot;:/icons/menu/Home/Patient/form/iconpatient.png&quot;);
+}
+
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QTextEdit" name="ConventionDesc_2">
+       <property name="geometry">
+        <rect>
+         <x>53</x>
+         <y>370</y>
+         <width>1091</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="html">
+        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="InfoConvetionID">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>210</y>
+         <width>491</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">padding: 5px 5px 5px 5px;
+border : 1px solid #1c2340;
+font-size: 12px;
+font-weight: 300;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="InfoConvetionIDF">
+       <property name="geometry">
+        <rect>
+         <x>660</x>
+         <y>210</y>
+         <width>491</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">padding: 5px 5px 5px 5px;
+border : 1px solid #1c2340;
+font-size: 12px;
+font-weight: 300;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="ConvbtnUpdate">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>530</y>
+         <width>501</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	font-weight: 600;
+	text-align: center;
+    vertical-align: middle;
+   	background-color: transparent;
+    border: 1px solid transparent;
+	color: #1494ff;
+    border-color: #1494ff;
+}
+
+QPushButton:hover {
+    background-color: #1494ff;
+	color: #ffffff;
+	font-weight: 600;
+}</string>
+       </property>
+       <property name="text">
+        <string>Mise A jour</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="ConvbtnDelete">
+       <property name="geometry">
+        <rect>
+         <x>640</x>
+         <y>530</y>
+         <width>501</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	font-weight: 600;
+	text-align: center;
+    vertical-align: middle;
+   	background-color: transparent;
+    border: 1px solid transparent;
+	color: #1494ff;
+    border-color: #1494ff;
+}
+
+QPushButton:hover {
+    background-color: #1494ff;
+	color: #ffffff;
+	font-weight: 600;
+}</string>
+       </property>
+       <property name="text">
+        <string>Supprimer</string>
+       </property>
+      </widget>
+      <zorder>Box_17</zorder>
+      <zorder>label_238</zorder>
+      <zorder>IconDate_7</zorder>
+      <zorder>label_239</zorder>
+      <zorder>label_240</zorder>
+      <zorder>lineEdit_date_5</zorder>
+      <zorder>label_241</zorder>
+      <zorder>label_242</zorder>
+      <zorder>IconDate_8</zorder>
+      <zorder>btnBackHomeConvention</zorder>
+      <zorder>label_243</zorder>
+      <zorder>label_244</zorder>
+      <zorder>lineEdit_date_6</zorder>
+      <zorder>IconPatient_4</zorder>
+      <zorder>ConventionDesc_2</zorder>
+      <zorder>InfoConvetionID</zorder>
+      <zorder>InfoConvetionIDF</zorder>
+      <zorder>ConvbtnUpdate</zorder>
+      <zorder>ConvbtnDelete</zorder>
+     </widget>
      <widget class="QWidget" name="page_3"/>
      <widget class="QWidget" name="page_4"/>
      <widget class="QWidget" name="page_5"/>

@@ -45,6 +45,7 @@ private slots:
 
     void load2();
 
+    void load3();
     void setbtnEnable(QPushButton*,QPushButton* &,QString);
 
     void on_btnChat_clicked();
@@ -67,6 +68,7 @@ private slots:
     void slot_table_clickedMaterial(int num);
     void slot_table_clickedRDV(int num);
     void slot_table_clickedPatient(int num);
+    void slot_table_clickedConvention(int num);
     void connected(QString);
     void readyRead();
     void on_backBtn_clicked();
@@ -166,6 +168,16 @@ private slots:
     void on_btnBackHomeRDV_4_clicked();
 
     void on_btnAddHomeRDV_3_clicked();
+
+    void on_BtnConventionAdd_clicked();
+
+    void on_tabConvention_activated(const QModelIndex &index);
+
+    void on_ConvbtnUpdate_clicked();
+
+    void on_btnBackHomeConvention_clicked();
+
+    void on_ConvbtnDelete_clicked();
 
 private:
     Ui::Interface *ui;
