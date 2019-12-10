@@ -24,6 +24,7 @@ Interface::Interface(QWidget* parent,int type,QString nom) :
     ui->tabMaterial->setModel(tmpMaterial.afficher());
     ui->tabRDV->setModel(tmpRDV.afficher());
     ui->tabPatient->setModel(tmpPatient.afficher());
+    ui->tabConvention->setModel(tmpConvention.afficher());
 
     ui->tabpersonnel->verticalHeader()->setVisible(false);
     ui->tabpersonnel->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -70,17 +71,25 @@ Interface::Interface(QWidget* parent,int type,QString nom) :
     ui->tabPatient->verticalHeader()->setSectionsClickable(true);
     ui->tabPatient->horizontalHeader()->setSectionsClickable(true);
 
+    ui->tabConvention->verticalHeader()->setVisible(false);
+    ui->tabConvention->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tabConvention->setAlternatingRowColors(true);
+    ui->tabConvention->setShowGrid(false);
+    ui->tabConvention->verticalHeader()->setSectionsClickable(true);
+    ui->tabConvention->horizontalHeader()->setSectionsClickable(true);
+
     adminpersonnel p;
     Materiel m;
     Fournisseur f;
     RDV r;
     patient pa;
+    convention c;
     ui->RDVTotal->setText(r.total());
     ui->personnelTotal->setText(p.total());
     ui->MaterialTotal->setText(m.total());
     ui->FournisseurTotal->setText(f.total());
     ui->PatientTotal->setText(pa.total());
-
+    ui->ConventionTotal->setText(c.total());
     ui->lineEdit_password->setValidator(new QRegExpValidator( QRegExp("[A-Za-z0-9_]{6,32}"), this ));
     ui->lineEdit_nom->setValidator(new QRegExpValidator( QRegExp("[A-Za-z]{0,32}"), this ));
     ui->lineEdit_prenom->setValidator(new QRegExpValidator( QRegExp("[A-Za-z]{0,32}"), this ));
@@ -935,4 +944,23 @@ void Interface::on_RDVbtnUpdate_clicked()
             ui->Hometabs->setCurrentIndex(7);
         }
      }
+}
+
+void Interface::on_btnBackHomeRDV_4_clicked()
+{
+    ui->Hometabs->setCurrentIndex(0);
+}
+void Interface::on_ConventionBtnG_clicked()
+{
+    ui->Hometabs->setCurrentIndex(13);
+}
+
+void Interface::on_btnBackHomePatient_4_clicked()
+{
+    ui->Hometabs->setCurrentIndex(13);
+}
+
+void Interface::on_btnAddHomeRDV_3_clicked()
+{
+    ui->Hometabs->setCurrentIndex(14);
 }

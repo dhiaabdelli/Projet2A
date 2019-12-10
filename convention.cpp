@@ -1,121 +1,124 @@
 #include "convention.h"
-#include<QSqlQuery>
-#include<QString>
-#include<QDate>
-#include<QVariant>
 
-
+#include <QDebug>
 convention::convention()
 {
-    code=0;
-
+    id="";
+    idfour="";
+    date_d="";
+    date_f="";
+    des="";
 }
-
-
-convention::convention(int code,int cin,QDate date_creation)
+convention::convention(QString id,QString idfour,QString date_d,QString date_f,QString des)
 {
-    this->code=code;
-    this->cin=cin;
-    this->date_creation=date_creation;
+  this->id=id;
+  this->idfour=idfour;
+  this->date_d=date_d;
+  this->date_f=date_f;
+  this->des=des;
 }
 
-bool convention::ajouter_convention()
+bool convention::ajouter()
 {
     QSqlQuery query;
-    QString res=QString::number(code);
-    QString res1=QString::number(cin);
+    query.prepare("INSERT INTO convention (id, idfour, date_d, date_f, des) "
+                        "VALUES (:id, :idfour, :date_d, :date_f, :des);");
+    query.bindValue(":id", id);
+    query.bindValue(":idfour", idfour);
+    query.bindValue(":date_d", date_d);
+    query.bindValue(":date_f", date_f);
+    query.bindValue(":des", des);
 
-          query.prepare("INSERT INTO convention (code,cin,date_creation) "
-                        "VALUES (:code,:cin, :date_creation)");
-          query.bindValue(":code", res);
-          query.bindValue(":cin", res1);
-          query.bindValue(":date_creation", date_creation);
-
-
-          return  query.exec();
+    return query.exec();
 }
 
-QSqlQueryModel * convention::afficher_convention()
-{QSqlQueryModel * model= new QSqlQueryModel();
+QSqlQueryModel * convention::afficher()
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
 
-model->setQuery("select * from convention");
-model->setHeaderData(0, Qt::Horizontal, QObject::tr("Code"));
-model->setHeaderData(2, Qt::Horizontal, QObject::tr("Cin "));
-model->setHeaderData(1, Qt::Horizontal, QObject::tr("Date_Creation "));
+    model->setQuery("select id,idfour,date_d,date_f,des from convention");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID "));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("ID Fournisseur"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("date de debut"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("date de fin "));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("Description"));
     return model;
 }
 
-bool convention::supprimer_convention(int code1)
+bool convention::supprimer(QString ref)
 {
 QSqlQuery query;
-QString res= QString::number(code1);
-query.prepare("Delete from convention where code = :code ");
-query.bindValue(":code", res);
+query.prepare("Delete from convention where ref = :ref ");
+query.bindValue(":ref", ref);
 return    query.exec();
 }
-
-bool convention::rech(int code){
+bool convention::rech(QString ref){
     QSqlQuery query;
-    QString res=QString::number(code);
-    query.prepare("select * from convention where code = :code");
-    query.bindValue(":code", res);
+    query.prepare("select * from convention where ref = :ref");
+    query.bindValue(":ref", ref);
     return query.exec();
 }
-
-bool convention::modifier(int code,QDate date_creation){
+bool convention::modifier(QString id,QString idfour,QString date_d,QString date_f,QString des){
     QSqlQuery query;
-    QString res=QString::number(code);
-    query.prepare("update convention set date_creation=:date_creation where code = :code");
-    query.bindValue(":code", res);
-    query.bindValue(":date_creation", date_creation);
+    query.prepare("update convention set date_d=:date_d ,date_d=:date_d, des=:des   where id = :id and idfour = :idfour;");
+    query.bindValue(":id", id);
+    query.bindValue(":idfour", idfour);
+    query.bindValue(":date_d", date_d);
+    query.bindValue(":date_f", date_f);
+    query.bindValue(":des", des);
     return query.exec();
 }
-
-
-QSqlQueryModel * convention::trierconvention_code()
-{
-    QSqlQueryModel * model= new QSqlQueryModel();
-
-    model->setQuery("select * from convention ORDER BY Code");
-    model->setHeaderData(0, Qt::Horizontal, QObject::tr("Code"));
-    model->setHeaderData(1, Qt::Horizontal, QObject::tr("Cin"));
-    model->setHeaderData(2, Qt::Horizontal, QObject::tr("Date_Creation"));
-        return model;
-}
-
-
-
-QSqlQueryModel * convention::afficher_convention_ch(int code)
-{
-    QSqlQueryModel * model= new QSqlQueryModel();
-    QSqlQuery query;
-    QString res=QString::number(code);
-    model->setQuery("select Code,Cin,Date_Creation from convention WHERE regexp_like(Code,:code)");
-    query.bindValue(":code", res);
-    model->setHeaderData(0, Qt::Horizontal, QObject::tr("Code"));
-    model->setHeaderData(1, Qt::Horizontal, QObject::tr("Cin"));
-    model->setHeaderData(2, Qt::Horizontal, QObject::tr("Date_Creation"));
-        return model;
-}
-
-/*bool convention::rech_convention(int code){
-    QSqlQuery query;
-    QString res=QString::number(code);
-    query.prepare("select * from convention where regexp_like(Code,:code)");
-    query.bindValue(":code", res);
-
-    return query.exec();
-}*/
-QSqlQueryModel * convention::Rechercher(long code)
+QSqlQueryModel * convention::recherche(QString data)
 {
     QSqlQueryModel * model=new QSqlQueryModel();
-    QString res=QString::number(code);
-    model->setQuery("select * from convention where (code LIKE '"+res+"%' ) ");
-            model->setHeaderData(0, Qt::Horizontal, QObject::tr("Code"));
-            model->setHeaderData(1, Qt::Horizontal, QObject::tr("Date de convetion"));
-
-            return  model;
-
-
+    model->setQuery("select id,idfour,date_d,date_f,des from convention where id LIKE '"+data+"%' OR idfour LIKE '"+data+"%' OR date_d LIKE '"+data+"%' OR date_f LIKE '"+data+"%' OR des LIKE '"+data+"%'");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID "));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("ID Fournisseur"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("date de debut"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("date de fin "));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("Description"));
+    return  model;
 }
 
+QSqlQueryModel * convention::trie(int num){
+    QSqlQueryModel * model = new QSqlQueryModel();
+    switch(num){
+        case 1:{
+            model->setQuery("select id,idfour,date_d,date_f,des from convention order by id DESC;");
+            break;
+        }
+        case 2:{
+            model->setQuery("select id,idfour,date_d,date_f,des from convention order by idfour DESC;");
+            break;
+        }
+        case 3:{
+            model->setQuery("select id,idfour,date_d,date_f,des from convention order by date_d DESC;");
+            break;
+        }
+        case 4:{
+            model->setQuery("select id,idfour,date_d,date_f,des from convention order by date_f DESC;");
+            break;
+        }
+        case 5:{
+            model->setQuery("select id,idfour,date_d,date_f,des from convention order by des DESC;");
+            break;
+        }
+    }
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID "));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("ID Fournisseur"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("date de debut"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("date de fin "));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("Description"));
+    return model;
+}
+
+QString convention::total() {
+    QSqlQuery query;
+    query.prepare("select count(*) from convention");
+    query.exec();
+
+    if(query.first())
+        return query.value(0).toString();
+    else
+        return "0";
+}

@@ -159,6 +159,14 @@ private slots:
 
     void on_RDVbtnUpdate_clicked();
 
+    void on_ConventionBtnG_clicked();
+
+    void on_btnBackHomePatient_4_clicked();
+
+    void on_btnBackHomeRDV_4_clicked();
+
+    void on_btnAddHomeRDV_3_clicked();
+
 private:
     Ui::Interface *ui;
     QWidget* parent;
@@ -168,6 +176,7 @@ private:
     Materiel tmpMaterial;
     RDV tmpRDV;
     patient tmpPatient;
+    convention tmpConvention;
     QString pagetitle;
     QPushButton* btncurrent;
     QTcpSocket *socket;
