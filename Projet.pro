@@ -28,7 +28,9 @@ SOURCES += \
     rdv.cpp\
     salle.cpp \
     patient.cpp \
-    convention.cpp
+    convention.cpp \
+    para.cpp \
+    medicament.cpp
 
 HEADERS += \
     adminpersonnel.h \
@@ -42,7 +44,9 @@ HEADERS += \
     rdv.h \
     salle.h \
     patient.h \
-    convention.h
+    convention.h \
+    para.h \
+    medicament.h
 
 FORMS += \
     interface.ui \

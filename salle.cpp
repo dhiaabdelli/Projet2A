@@ -30,9 +30,9 @@ return    query.exec();
 QSqlQueryModel * salle::afficher()
 {QSqlQueryModel * model= new QSqlQueryModel();
 
-model->setQuery("select * from salle");
-model->setHeaderData(0, Qt::Horizontal, QObject::tr("num"));
-model->setHeaderData(1, Qt::Horizontal, QObject::tr("bloc"));
+model->setQuery("select num,bloc from salle");
+model->setHeaderData(0, Qt::Horizontal, QObject::tr("Numero"));
+model->setHeaderData(1, Qt::Horizontal, QObject::tr("Bloc"));
     return model;
 }
 
@@ -57,7 +57,7 @@ bool salle::rech(int x){
 bool salle::modifier(int a,QString b)
 {
     QSqlQuery query;
-    query.prepare("update salle set bloc=:bloc   where num = :num");
+    query.prepare("update salle set bloc=:bloc  where num = :num");
     query.bindValue(":num", a);
     query.bindValue(":bloc", b);
     return query.exec();
@@ -67,19 +67,28 @@ QSqlQueryModel * salle::Rechercher(long num)
 {
     QSqlQueryModel * model=new QSqlQueryModel();
     QString res=QString::number(num);
-    model->setQuery("select * from salle where (num LIKE '"+res+"%' ) ");
-            model->setHeaderData(0, Qt::Horizontal, QObject::tr("num"));
-            model->setHeaderData(1, Qt::Horizontal, QObject::tr("bloc"));
+    model->setQuery("select num,bloc from salle where num LIKE '"+res+"%' or bloc LIKE '"+res+"%'");
+            model->setHeaderData(0, Qt::Horizontal, QObject::tr("Numero"));
+            model->setHeaderData(1, Qt::Horizontal, QObject::tr("Bloc"));
 
             return  model;
 }
 
-QSqlQueryModel * salle::trie(int)
+QSqlQueryModel * salle::trie(int num)
 {
     QSqlQueryModel * model= new QSqlQueryModel();
 
-model->setQuery("select * from salle order by num");
-model->setHeaderData(0, Qt::Horizontal, QObject::tr("num"));
-model->setHeaderData(1, Qt::Horizontal, QObject::tr("bloc"));
+    switch(num){
+        case 1:{
+        model->setQuery("select num,bloc from salle order by num DESC;");
+            break;
+        }
+        case 2:{
+        model->setQuery("select num,bloc from salle order by bloc DESC");
+            break;
+        }
+    }
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("Numero"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("Bloc"));
     return model;
 }

@@ -9,7 +9,8 @@
 #include "rdv.h"
 #include "patient.h"
 #include "convention.h"
-// We'll need some regular expression magic in this code:
+#include "salle.h"
+
 #include <QRegExp>
 #include <QTcpSocket>
 namespace Ui {
@@ -69,6 +70,7 @@ private slots:
     void slot_table_clickedRDV(int num);
     void slot_table_clickedPatient(int num);
     void slot_table_clickedConvention(int num);
+    void slot_table_clickedsalle(int num);
     void connected(QString);
     void readyRead();
     void on_backBtn_clicked();
@@ -179,6 +181,28 @@ private slots:
 
     void on_ConvbtnDelete_clicked();
 
+    void on_RDVDelete_clicked();
+
+    void on_btnBackHomeRDV_2_clicked();
+
+    void on_WROOMBtnG_clicked();
+
+    void on_btnSalleBackHome_clicked();
+
+    void on_lineEdit_7_textChanged(const QString &arg1);
+
+    void on_btnAddService_2_clicked();
+
+    void on_btnBackHomePatient_5_clicked();
+
+    void on_BtnSalleAdd_clicked();
+
+    void on_tabsalle_activated(const QModelIndex &index);
+
+    void on_SallebtnUpdate_clicked();
+
+    void on_SallebtnDelete_clicked();
+
 private:
     Ui::Interface *ui;
     QWidget* parent;
@@ -189,6 +213,7 @@ private:
     RDV tmpRDV;
     patient tmpPatient;
     convention tmpConvention;
+    salle tmpsalle;
     QString pagetitle;
     QPushButton* btncurrent;
     QTcpSocket *socket;

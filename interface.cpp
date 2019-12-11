@@ -25,6 +25,7 @@ Interface::Interface(QWidget* parent,int type,QString nom) :
     ui->tabRDV->setModel(tmpRDV.afficher());
     ui->tabPatient->setModel(tmpPatient.afficher());
     ui->tabConvention->setModel(tmpConvention.afficher());
+    ui->tabsalle->setModel(tmpsalle.afficher());
 
     ui->tabpersonnel->verticalHeader()->setVisible(false);
     ui->tabpersonnel->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -77,6 +78,14 @@ Interface::Interface(QWidget* parent,int type,QString nom) :
     ui->tabConvention->setShowGrid(false);
     ui->tabConvention->verticalHeader()->setSectionsClickable(true);
     ui->tabConvention->horizontalHeader()->setSectionsClickable(true);
+
+
+    ui->tabsalle->verticalHeader()->setVisible(false);
+    ui->tabsalle->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tabsalle->setAlternatingRowColors(true);
+    ui->tabsalle->setShowGrid(false);
+    ui->tabsalle->verticalHeader()->setSectionsClickable(true);
+    ui->tabsalle->horizontalHeader()->setSectionsClickable(true);
 
     adminpersonnel p;
     Materiel m;
@@ -142,6 +151,8 @@ Interface::Interface(QWidget* parent,int type,QString nom) :
     connect(ui->tabConvention->verticalHeader(), SIGNAL(sectionClicked(int)),this, SLOT(slot_table_clickedConvention(int)));
     connect(ui->tabConvention->horizontalHeader(), SIGNAL(sectionClicked(int)),this, SLOT(slot_table_clickedConvention(int)));
 
+    connect(ui->tabsalle->verticalHeader(), SIGNAL(sectionClicked(int)),this, SLOT(slot_table_clickedsalle(int)));
+    connect(ui->tabsalle->horizontalHeader(), SIGNAL(sectionClicked(int)),this, SLOT(slot_table_clickedsalle(int)));
 
     socket = new QTcpSocket(this);
 
@@ -335,6 +346,20 @@ void Interface::slot_table_clickedConvention(int num){
         }
     }
 }
+
+void Interface::slot_table_clickedsalle(int num){
+    switch(num){
+        case 0:{
+            ui->tabsalle->setModel(tmpsalle.trie(1));
+            break;
+        }
+        case 1:{
+            ui->tabsalle->setModel(tmpsalle.trie(2));
+            break;
+        }
+    }
+}
+
 Interface::~Interface()
 {
     delete ui;
@@ -403,8 +428,8 @@ void Interface::load2(){
 
 void Interface::load3(){
     ui->combo_IDFour->clear();
-    QSqlQueryModel* model = new QSqlQueryModel();
-    model->setQuery("select nom from fournisseur");
+    QSqlQueryModel* model = new QSqlQueryModel;
+    model->setQuery("select id from fournisseur");
     ui->combo_IDFour->setModel(model);
 }
 void Interface::on_btnAdmin_clicked()
@@ -609,6 +634,7 @@ void Interface::on_BtnFourAdd_clicked()
     if(test){
         ui->tabFournisseur->setModel(tmpfournisseur.afficher());
         ui->FournisseurTotal->setText(f.total());
+        this->load3();
         ui->Hometabs->setCurrentIndex(1);
     }
 }
@@ -670,6 +696,7 @@ void Interface::on_FourbtnDelete_clicked()
       if(test){
             ui->tabFournisseur->setModel(tmpfournisseur.afficher());
             ui->FournisseurTotal->setText(f.total());
+            this->load3();
             ui->Hometabs->setCurrentIndex(1);
         }
      }else{
@@ -1075,5 +1102,115 @@ void Interface::on_ConvbtnDelete_clicked()
         }
      }else{
          ui->Hometabs->setCurrentIndex(13);
+     }
+}
+
+void Interface::on_RDVDelete_clicked()
+{
+    RDV r;
+    if(r.rech(ui->InfoRDVId->text())){
+      bool test=tmpRDV.supprimer(ui->InfoRDVId->text());
+      if(test){
+            ui->tabRDV->setModel(tmpRDV.afficher());
+            ui->RDVTotal->setText(r.total());
+            ui->Hometabs->setCurrentIndex(7);
+        }
+     }else{
+         ui->Hometabs->setCurrentIndex(7);
+     }
+}
+
+void Interface::on_btnBackHomeRDV_2_clicked()
+{
+    ui->Hometabs->setCurrentIndex(7);
+}
+
+void Interface::on_WROOMBtnG_clicked()
+{
+    ui->Hometabs->setCurrentIndex(16);
+}
+
+void Interface::on_btnSalleBackHome_clicked()
+{
+    ui->Hometabs->setCurrentIndex(0);
+}
+
+void Interface::on_lineEdit_7_textChanged(const QString &arg1)
+{
+    if(arg1 == ""){
+       ui->tabsalle->setModel(tmpsalle.afficher());
+    }else{
+        ui->tabsalle->setModel(tmpsalle.Rechercher(arg1.toInt()));
+    }
+}
+
+void Interface::on_btnAddService_2_clicked()
+{
+    ui->Hometabs->setCurrentIndex(17);
+}
+
+void Interface::on_btnBackHomePatient_5_clicked()
+{
+     ui->Hometabs->setCurrentIndex(0);
+}
+
+void Interface::on_BtnSalleAdd_clicked()
+{
+    int num = ui->lineEdit_numsalle->text().toInt();
+    QString bloc = ui->lineEdit_blocsalle->text();
+    salle s(num,bloc);
+    bool test=s.ajouter();
+    if(test){
+        ui->tabsalle->setModel(tmpsalle.afficher());
+        ui->Hometabs->setCurrentIndex(16);
+    }
+}
+
+void Interface::on_tabsalle_activated(const QModelIndex &index)
+{
+    QString val=ui->tabsalle->model()->data(index).toString();
+
+    QSqlQuery query;
+    query.prepare("select num,bloc from salle where num = :num;");
+    query.bindValue(":num",val);
+
+    if(query.exec())
+    {
+        if(query.first())
+        {
+              ui->lineEdit_blocsalle_2->setText(query.value(1).toString());
+              ui->lineEdit_numsalle_2->setText(val);
+              ui->Hometabs->setCurrentIndex(18);
+        }
+
+     }
+}
+
+void Interface::on_SallebtnUpdate_clicked()
+{
+    int num = ui->lineEdit_numsalle_2->text().toInt();
+    QString bloc = ui->lineEdit_blocsalle_2->text();
+
+    salle s;
+    if(s.rech(num)){
+        bool test = s.modifier(num,bloc);
+        if(test){
+            ui->tabsalle->setModel(tmpsalle.afficher());
+            ui->Hometabs->setCurrentIndex(16);
+        }
+     }
+}
+
+void Interface::on_SallebtnDelete_clicked()
+{
+    salle s;
+    if(s.rech(ui->lineEdit_numsalle_2->text().toInt())){
+      bool test=tmpsalle.supprimer(ui->lineEdit_numsalle_2->text().toInt());
+      if(test){
+            ui->tabsalle->setModel(tmpsalle.afficher());
+            ui->Hometabs->setCurrentIndex(16);
+        }
+     }else{
+         ui->Hometabs->setCurrentIndex(16);
      }
 }

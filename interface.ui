@@ -4374,8 +4374,27 @@ QPushButton:hover {
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">
-	border : 1px solid #1c2340;</string>
+        <string notr="true">QComboBox
+{
+
+background-color: transparent;
+
+color:white;
+
+border : 1px solid #1c2340;
+
+padding: 1px 0px 1px 3px;
+
+selection-color:white;
+
+}
+QComboBox QAbstractItemView {
+    background-color: rgb(41,41,41);
+    color: white;
+
+    selection-background-color: rgb(88, 88, 88);
+    selection-color: rgb(200, 200, 200);
+}</string>
        </property>
       </widget>
       <zorder>Box_10</zorder>
@@ -4651,6 +4670,40 @@ QPushButton:hover {
         <string>Supprimer</string>
        </property>
       </widget>
+      <widget class="QPushButton" name="btnBackHomeRDV_2">
+       <property name="geometry">
+        <rect>
+         <x>1100</x>
+         <y>30</y>
+         <width>81</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	font-weight: 500;
+	text-align: center;
+    vertical-align: middle;
+	background-color: transparent;
+	padding: 0px 15px 15px 20px;
+    color: #fff;
+	font-size: 11px;
+	border : 0;
+	border-right: 3px solid transparent;
+ 	background-position: center top;
+    background-repeat: no-repeat;
+    background-origin: content;
+    background-image: url(&quot;:/icons/menu/admin/personnel/form/back.png&quot;);
+}
+
+QPushButton:hover{
+    background-image: url(&quot;:/icons/menu/admin/personnel/form/back-hover.png&quot;);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
       <zorder>Box_13</zorder>
       <zorder>label_184</zorder>
       <zorder>label_185</zorder>
@@ -4663,6 +4716,7 @@ QPushButton:hover {
       <zorder>pushButton_25</zorder>
       <zorder>RDVbtnUpdate</zorder>
       <zorder>RDVDelete</zorder>
+      <zorder>btnBackHomeRDV_2</zorder>
      </widget>
      <widget class="QWidget" name="PatientMain">
       <widget class="QLabel" name="label_161">
@@ -6762,8 +6816,27 @@ QPushButton:hover{
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">
-	border : 1px solid #1c2340;</string>
+        <string notr="true">QComboBox
+{
+
+background-color: transparent;
+
+color:white;
+
+border : 1px solid #1c2340;
+
+padding: 1px 0px 1px 3px;
+
+selection-color:white;
+
+}
+QComboBox QAbstractItemView {
+    background-color: rgb(41,41,41);
+    color: white;
+
+    selection-background-color: rgb(88, 88, 88);
+    selection-color: rgb(200, 200, 200);
+}</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_236">
@@ -7265,9 +7338,709 @@ QPushButton:hover {
       <zorder>ConvbtnUpdate</zorder>
       <zorder>ConvbtnDelete</zorder>
      </widget>
-     <widget class="QWidget" name="page_3"/>
-     <widget class="QWidget" name="page_4"/>
-     <widget class="QWidget" name="page_5"/>
+     <widget class="QWidget" name="SalleMain">
+      <widget class="QLabel" name="label_100">
+       <property name="geometry">
+        <rect>
+         <x>880</x>
+         <y>70</y>
+         <width>31</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+ 	background-position: center top;
+    background-repeat: no-repeat;
+    background-origin: content;
+    background-image: url(&quot;:/icons/menu/admin/personnel/search.png&quot;);
+}
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnAddService_2">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>60</y>
+         <width>271</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	font-weight: 600;
+	text-align: center;
+    vertical-align: middle;
+   	background-color: transparent;
+    border: 1px solid transparent;
+	color: #1494ff;
+    border-color: #1494ff;
+	border-radius: 20px;
+}
+
+QPushButton:hover {
+    background-color: #1494ff;
+	color: #ffffff;
+	font-weight: 600;
+}</string>
+       </property>
+       <property name="text">
+        <string>Ajouter une Salle</string>
+       </property>
+      </widget>
+      <widget class="QTableView" name="tabsalle">
+       <property name="geometry">
+        <rect>
+         <x>28</x>
+         <y>120</y>
+         <width>1171</width>
+         <height>391</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+	line-height: 1;
+    color: #e9e6e6;
+    background-color: #2b2e4c;
+    background-clip: padding-box;
+	border-radius: 2px;	
+	border: 1px solid #414561;
+    font-weight: 400;
+	font-size: 16px;
+    padding: 0.875rem 1.375rem;
+	color: #ffffff;
+}
+
+QPushButton {
+	font-weight: 600;
+	text-align: center;
+    vertical-align: middle;
+   	background-color: transparent;
+    border: 1px solid transparent;
+	color: #6640b2;
+    border-color: #6640b2;
+}
+
+QPushButton:hover {
+    background-color: #6640b2;
+	color: #ffffff;
+	font-weight: 600;
+}
+QPushButton:pressed {
+    background-color: #6640b2;
+	color: #ffffff;
+	font-weight: 600;
+}
+
+
+QTableView{
+	background-color: transparent;
+	gridline-color: #1c2340;
+	color: #ffffff;
+	alternate-background-color: #1d1a36;
+	border : 1px solid #1c2340;
+}
+QTableView::item:focus
+{
+  	background-color: #2e3657;
+	font-weight: 500;
+}
+QTableView::item
+{
+   text-align: center;
+}
+
+QHeaderView {
+	background-color: #292443;
+ }
+QHeaderView::section {
+	spacing: 10px;
+ 	background-color: #292443;
+	color: #929292;
+	margin: 1px;
+	border: 0;
+ 	text-align: center;
+  	font-family: arial;
+	font-size: 12px;
+	padding: 8px 0px 5px 0px;
+ }
+
+QTableView QTableCornerButton::section {
+    background-color: #292443;
+}
+</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_7">
+       <property name="geometry">
+        <rect>
+         <x>860</x>
+         <y>60</y>
+         <width>341</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+	border : 1px solid #1c2340;
+	padding: 5px 5px 5px 55px;
+	color: #ffffff;
+	border-radius: 10px;	
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnSalleBackHome">
+       <property name="geometry">
+        <rect>
+         <x>1090</x>
+         <y>10</y>
+         <width>81</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	font-weight: 500;
+	text-align: center;
+    vertical-align: middle;
+	background-color: transparent;
+	padding: 0px 15px 15px 20px;
+    color: #fff;
+	font-size: 11px;
+	border : 0;
+	border-right: 3px solid transparent;
+ 	background-position: center top;
+    background-repeat: no-repeat;
+    background-origin: content;
+    background-image: url(&quot;:/icons/menu/admin/personnel/form/back.png&quot;);
+}
+
+QPushButton:hover{
+    background-image: url(&quot;:/icons/menu/admin/personnel/form/back-hover.png&quot;);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <zorder>lineEdit_7</zorder>
+      <zorder>label_100</zorder>
+      <zorder>btnAddService_2</zorder>
+      <zorder>tabsalle</zorder>
+      <zorder>btnSalleBackHome</zorder>
+     </widget>
+     <widget class="QWidget" name="SalleAdd">
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: 800;
+}
+
+QLineEdit {
+	border : 1px solid #1c2340;
+	padding: 5px 5px 5px 5px;
+	color: #ffffff;
+}
+</string>
+      </property>
+      <widget class="QLabel" name="label_245">
+       <property name="geometry">
+        <rect>
+         <x>520</x>
+         <y>110</y>
+         <width>161</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+         <weight>99</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	color: #ffffff;
+	font-size: 15px;
+	font-weight: 800;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="IconPatient_5">
+       <property name="geometry">
+        <rect>
+         <x>520</x>
+         <y>40</y>
+         <width>161</width>
+         <height>151</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	padding: 5px 1px 1px 1px;
+	text-align: center;
+    vertical-align: middle;
+	background-color: transparent;
+ 	background-position: center top;
+    background-repeat: no-repeat;
+    background-origin: content;
+    background-image: url(&quot;:/icons/menu/Home/Salle/form/clock.png&quot;);
+}
+
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="BtnSalleAdd">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>530</y>
+         <width>571</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	font-weight: 600;
+	text-align: center;
+    vertical-align: middle;
+   	background-color: transparent;
+    border: 1px solid transparent;
+	color: #1494ff;
+    border-color: #1494ff;
+}
+
+QPushButton:hover {
+    background-color: #1494ff;
+	color: #ffffff;
+	font-weight: 600;
+}</string>
+       </property>
+       <property name="text">
+        <string>Ajouter</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_246">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>10</y>
+         <width>491</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	color: #ffffff;
+	font-size: 16px;
+	font-weight: 700;
+}</string>
+       </property>
+       <property name="text">
+        <string>Ajouter une nouvelle Salle</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="Box_18">
+       <property name="geometry">
+        <rect>
+         <x>36</x>
+         <y>120</y>
+         <width>1161</width>
+         <height>331</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	border : 2px solid #1c2340;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnBackHomePatient_5">
+       <property name="geometry">
+        <rect>
+         <x>1120</x>
+         <y>20</y>
+         <width>81</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	font-weight: 500;
+	text-align: center;
+    vertical-align: middle;
+	background-color: transparent;
+	padding: 0px 15px 15px 20px;
+    color: #fff;
+	font-size: 11px;
+	border : 0;
+	border-right: 3px solid transparent;
+ 	background-position: center top;
+    background-repeat: no-repeat;
+    background-origin: content;
+    background-image: url(&quot;:/icons/menu/admin/personnel/form/back.png&quot;);
+}
+
+QPushButton:hover{
+    background-image: url(&quot;:/icons/menu/admin/personnel/form/back-hover.png&quot;);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="BtnSalleVider">
+       <property name="geometry">
+        <rect>
+         <x>650</x>
+         <y>530</y>
+         <width>551</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	font-weight: 600;
+	text-align: center;
+    vertical-align: middle;
+   	background-color: transparent;
+    border: 1px solid transparent;
+	color: #1494ff;
+    border-color: #1494ff;
+}
+
+QPushButton:hover {
+    background-color: #1494ff;
+	color: #ffffff;
+	font-weight: 600;
+}</string>
+       </property>
+       <property name="text">
+        <string>Vider</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_247">
+       <property name="geometry">
+        <rect>
+         <x>570</x>
+         <y>190</y>
+         <width>81</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Numero</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_numsalle">
+       <property name="geometry">
+        <rect>
+         <x>370</x>
+         <y>220</y>
+         <width>451</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_blocsalle">
+       <property name="geometry">
+        <rect>
+         <x>380</x>
+         <y>320</y>
+         <width>451</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_248">
+       <property name="geometry">
+        <rect>
+         <x>590</x>
+         <y>290</y>
+         <width>81</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Bloc</string>
+       </property>
+      </widget>
+      <zorder>Box_18</zorder>
+      <zorder>label_245</zorder>
+      <zorder>IconPatient_5</zorder>
+      <zorder>BtnSalleAdd</zorder>
+      <zorder>label_246</zorder>
+      <zorder>btnBackHomePatient_5</zorder>
+      <zorder>BtnSalleVider</zorder>
+      <zorder>label_247</zorder>
+      <zorder>lineEdit_numsalle</zorder>
+      <zorder>lineEdit_blocsalle</zorder>
+      <zorder>label_248</zorder>
+     </widget>
+     <widget class="QWidget" name="SalleEdit">
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: 800;
+}
+
+QLineEdit {
+	border : 1px solid #1c2340;
+	padding: 5px 5px 5px 5px;
+	color: #ffffff;
+}
+</string>
+      </property>
+      <widget class="QPushButton" name="btnBackHomePatient_6">
+       <property name="geometry">
+        <rect>
+         <x>1120</x>
+         <y>20</y>
+         <width>81</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	font-weight: 500;
+	text-align: center;
+    vertical-align: middle;
+	background-color: transparent;
+	padding: 0px 15px 15px 20px;
+    color: #fff;
+	font-size: 11px;
+	border : 0;
+	border-right: 3px solid transparent;
+ 	background-position: center top;
+    background-repeat: no-repeat;
+    background-origin: content;
+    background-image: url(&quot;:/icons/menu/admin/personnel/form/back.png&quot;);
+}
+
+QPushButton:hover{
+    background-image: url(&quot;:/icons/menu/admin/personnel/form/back-hover.png&quot;);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_249">
+       <property name="geometry">
+        <rect>
+         <x>590</x>
+         <y>290</y>
+         <width>81</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Bloc</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_blocsalle_2">
+       <property name="geometry">
+        <rect>
+         <x>370</x>
+         <y>320</y>
+         <width>451</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_numsalle_2">
+       <property name="geometry">
+        <rect>
+         <x>370</x>
+         <y>220</y>
+         <width>451</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="IconPatient_6">
+       <property name="geometry">
+        <rect>
+         <x>520</x>
+         <y>40</y>
+         <width>161</width>
+         <height>151</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	padding: 5px 1px 1px 1px;
+	text-align: center;
+    vertical-align: middle;
+	background-color: transparent;
+ 	background-position: center top;
+    background-repeat: no-repeat;
+    background-origin: content;
+    background-image: url(&quot;:/icons/menu/Home/Salle/form/clock.png&quot;);
+}
+
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_250">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>10</y>
+         <width>491</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	color: #ffffff;
+	font-size: 16px;
+	font-weight: 700;
+}</string>
+       </property>
+       <property name="text">
+        <string>Ajouter une nouvelle Salle</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="Box_19">
+       <property name="geometry">
+        <rect>
+         <x>36</x>
+         <y>120</y>
+         <width>1161</width>
+         <height>331</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	border : 2px solid #1c2340;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_251">
+       <property name="geometry">
+        <rect>
+         <x>570</x>
+         <y>190</y>
+         <width>81</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Numero</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="SallebtnUpdate">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>530</y>
+         <width>501</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	font-weight: 600;
+	text-align: center;
+    vertical-align: middle;
+   	background-color: transparent;
+    border: 1px solid transparent;
+	color: #1494ff;
+    border-color: #1494ff;
+}
+
+QPushButton:hover {
+    background-color: #1494ff;
+	color: #ffffff;
+	font-weight: 600;
+}</string>
+       </property>
+       <property name="text">
+        <string>Mise A jour</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="SallebtnDelete">
+       <property name="geometry">
+        <rect>
+         <x>700</x>
+         <y>530</y>
+         <width>501</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	font-weight: 600;
+	text-align: center;
+    vertical-align: middle;
+   	background-color: transparent;
+    border: 1px solid transparent;
+	color: #1494ff;
+    border-color: #1494ff;
+}
+
+QPushButton:hover {
+    background-color: #1494ff;
+	color: #ffffff;
+	font-weight: 600;
+}</string>
+       </property>
+       <property name="text">
+        <string>Supprimer</string>
+       </property>
+      </widget>
+      <zorder>Box_19</zorder>
+      <zorder>btnBackHomePatient_6</zorder>
+      <zorder>label_249</zorder>
+      <zorder>lineEdit_blocsalle_2</zorder>
+      <zorder>lineEdit_numsalle_2</zorder>
+      <zorder>IconPatient_6</zorder>
+      <zorder>label_250</zorder>
+      <zorder>label_251</zorder>
+      <zorder>SallebtnUpdate</zorder>
+      <zorder>SallebtnDelete</zorder>
+     </widget>
     </widget>
    </widget>
    <widget class="QWidget" name="ChatPage">
@@ -7467,7 +8240,7 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
 }</string>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="Personnel">
       <attribute name="title">
@@ -9092,7 +9865,7 @@ QPushButton:hover{
         </rect>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="page_14">
         <widget class="QTableView" name="tabservice">
