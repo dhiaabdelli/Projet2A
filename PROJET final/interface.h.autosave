@@ -1,0 +1,105 @@
+#ifndef Interface_H
+#define Interface_H
+
+#include <QDialog>
+#include "adminpersonnel.h"
+#include "service.h"
+#include "fournisseur.h"
+// We'll need some regular expression magic in this code:
+#include <QRegExp>
+#include <QTcpSocket>
+namespace Ui {
+class Interface;
+}
+
+class Interface : public QDialog
+{
+    Q_OBJECT
+
+public:
+    explicit Interface(QWidget *parent = nullptr,int type = 0,QString nom = "");
+    ~Interface();
+
+private slots:
+    void on_pushButton_clicked();
+
+
+
+    void on_tabpersonnel_activated(const QModelIndex &index);
+
+
+    void on_pushButton_2_clicked();
+
+
+    void on_tabservice_activated(const QModelIndex &index);
+
+
+    void on_pushButton_13_clicked();
+
+
+    void load();
+
+    void setbtnEnable(QPushButton*,QPushButton* &,QString);
+
+    void on_btnChat_clicked();
+
+
+    void on_btnAdmin_clicked();
+
+    void on_btnHome_clicked();
+
+    void on_btnPersonnel_2_clicked();
+
+    void on_lineEdit_2_textChanged(const QString &arg1);
+
+    void on_pushButton_14_clicked();
+
+    void on_pushButton_15_clicked();
+    void slot_table_clicked(int);
+    void connected(QString);
+    void readyRead();
+    void on_backBtn_clicked();
+
+    void on_pushButton_19_clicked();
+
+    void on_btnAddService_clicked();
+
+    void on_btnBackAddService_clicked();
+
+    void on_btnBackEditService_clicked();
+
+    void on_MaterialBtnG_clicked();
+
+    void on_lineEdit_4_textChanged(const QString &arg1);
+
+    void on_btnBackHomeFour_clicked();
+
+    void on_btnAddHomeFour_clicked();
+
+    void on_btnBackHomeFourAdd_clicked();
+
+    void on_BtnFourAdd_clicked();
+
+    void on_FournisseurBtnG_clicked();
+
+    void on_tabFournisseur_activated(const QModelIndex &index);
+
+    void on_backBtn_2_clicked();
+
+    void on_FourbtnUpdate_clicked();
+    
+    void on_pushButton_23_clicked();
+    
+private:
+    Ui::Interface *ui;
+    QWidget* parent;
+    adminpersonnel tmppersonnel;
+    service tmpservice;
+    Fournisseur tmpfournisseur;
+    QString pagetitle;
+    QPushButton* btncurrent;
+    QTcpSocket *socket;
+};
+
+
+#endif // Interface_H
