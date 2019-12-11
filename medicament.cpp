@@ -5,86 +5,98 @@
 #include<QTextStream>
 Medicament::Medicament()
 {
-id=0;
-nom="";
-reference="";
+    ref="";
+    nom="";
+    idfour="";
 }
-Medicament::Medicament(int id,QString nom,QString reference)
+Medicament::Medicament(QString ref,QString nom,QString idfour)
 {
-  this->id=id;
+  this->ref=ref;
   this->nom=nom;
-  this->reference=reference;
+  this->idfour=idfour;
 }
-QString Medicament::get_nom(){return  nom;}
-QString Medicament::get_reference(){return reference;}
-int Medicament::get_id(){return  id;}
 
 bool Medicament::ajouter()
 {
-QSqlQuery query;
-QString res= QString::number(id);
-query.prepare("INSERT INTO medicament (ID, NOM, REFERENCE) "
-                    "VALUES (:id, :nom, :reference)");
-query.bindValue(":id", res);
-query.bindValue(":nom", nom);
-query.bindValue(":reference", reference);
+    QSqlQuery query;
+    query.prepare("INSERT INTO medicament (ref, NOM, idfour) "
+                        "VALUES (:ref, :nom, :idfour)");
+    query.bindValue(":ref", ref);
+    query.bindValue(":nom", nom);
+    query.bindValue(":idfour", idfour);
 
-return    query.exec();
+    return    query.exec();
 }
 
 QSqlQueryModel * Medicament::afficher()
-{QSqlQueryModel * model= new QSqlQueryModel();
-
-model->setQuery("select * from medicament");
-model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
-model->setHeaderData(1, Qt::Horizontal, QObject::tr("Nom "));
-model->setHeaderData(2, Qt::Horizontal, QObject::tr("Reference"));
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
+    model->setQuery("select ref,nom,idfour from medicament;");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("Reference"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("Nom "));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("ID Fournisseur"));
     return model;
 }
 
-bool Medicament::supprimer(int idd)
+bool Medicament::supprimer(QString ref)
 {
-QSqlQuery query;
-query.prepare("Delete from medicament where ID = :id ");
-query.bindValue(":id", idd);
-return    query.exec();
-}
-bool Medicament::rech(int x){
     QSqlQuery query;
-    QString res= QString::number(x);
-    query.prepare("select * from medicament where id = :id");
-    query.bindValue(":id", res);
+    query.prepare("Delete from medicament where ref = :ref ");
+    query.bindValue(":ref", ref);
+    return    query.exec();
+}
+bool Medicament::rech(QString ref){
+    QSqlQuery query;
+    query.prepare("select * from medicament where ref = :ref");
+    query.bindValue(":ref", ref);
     query.exec();
     return query.first();
 }
 
-bool Medicament::modifier(int a,QString b,QString c)
+bool Medicament::modifier(QString a,QString b,QString c)
 {
 QSqlQuery query;
-query.prepare("update Medicament set nom=:nom, reference=:reference where id=:id");
-query.bindValue(":id", a);
+query.prepare("update Medicament set nom=:nom, idfour=:idfour where ref=:ref");
+query.bindValue(":ref", a);
 query.bindValue(":nom", b);
-query.bindValue(":reference", c);
+query.bindValue(":idfour", c);
 
 return    query.exec();
 }
 
-QSqlQueryModel * Medicament::trier()
-{QSqlQueryModel * model= new QSqlQueryModel();
-
-model->setQuery("select * from medicament order by id");
-model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
-model->setHeaderData(1, Qt::Horizontal, QObject::tr("Nom "));
-model->setHeaderData(2, Qt::Horizontal, QObject::tr("Reference"));
+QSqlQueryModel * Medicament::trie(int num){
+    QSqlQueryModel * model = new QSqlQueryModel();
+    switch(num){
+        case 1:{
+        model->setQuery("select ref,nom,ifour from materiel order by ref DESC;");
+            break;
+        }
+        case 2:{
+            model->setQuery("select ref,nom,ifour from materiel order by nom DESC;");
+            break;
+        }
+        case 3:{
+            model->setQuery("select ref,nom,ifour from materiel order by ifour DESC;");
+            break;
+        }
+    }
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("Reference"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("Nom "));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("ID Fournisseur"));
     return model;
 }
-QSqlQueryModel * Medicament ::rechercher(int id)
+
+
+QSqlQueryModel * Medicament::recherche(QString data)
 {
     QSqlQueryModel * model= new QSqlQueryModel();
-    QString res = QString :: number(id);
-    model->setQuery("select * from medicament where id='"+res+"'");
+    model->setQuery("select ref,nom,idfour from medicament where ref LIKE '"+data+"%' OR nom LIKE '"+data+"%' OR idfour LIKE '"+data+"%';");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("Reference"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("Nom "));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("ID Fournisseur"));
     return model;
 }
+
 void Medicament::file()
 {
     QSqlQuery query;

@@ -4,23 +4,20 @@
 #include <QSqlQuery>
 #include <QSqlQueryModel>
 class Medicament
-{public:
+{
+public:
     Medicament();
-    Medicament(int,QString,QString);
-    QString get_nom();
-    QString get_reference();
-    int get_id();
+    Medicament(QString,QString,QString);
     bool ajouter();
     QSqlQueryModel * afficher();
-    bool modifier(int,QString,QString);
-    bool rech(int);
-    bool supprimer(int);
-    QSqlQueryModel * trier();
-    QSqlQueryModel * rechercher(int id);
+    bool modifier(QString,QString,QString);
+    bool rech(QString);
+    bool supprimer(QString);
+    QSqlQueryModel * trie(int);
+    QSqlQueryModel * recherche(QString data);
     void file();
 private:
-    QString nom,reference;
-    int id;
+    QString ref,nom,idfour;
 };
 
 

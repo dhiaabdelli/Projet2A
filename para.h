@@ -4,22 +4,19 @@
 #include <QSqlQuery>
 #include <QSqlQueryModel>
 class Para
-{public:
+{
+public:
     Para();
-    Para(int,QString,QString);
-    QString get_Type();
-    QString get_Ref();
-    int get_Serial();
-    bool ajouter_para();
-    QSqlQueryModel * afficher_para();
-    bool modifier_para(int,QString,QString);
-    bool rech_para(int);
-    bool supprimer_para(int);
-    QSqlQueryModel * trier();
-    QSqlQueryModel * rechercher(int Serial);
+    Para(QString,QString);
+    bool ajouter();
+    QSqlQueryModel * afficher();
+    bool modifier(QString,QString);
+    bool rech(QString);
+    bool supprimer(QString);
+    QSqlQueryModel * trier(int);
+    QSqlQueryModel * rechercher(QString);
 private:
     QString Ref,Type;
-    int Serial;
 };
 
 #endif // PARA_H

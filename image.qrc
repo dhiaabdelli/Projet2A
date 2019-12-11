@@ -47,6 +47,8 @@
         <file>icons/menu/Home/RDV/form/calendar.png</file>
         <file>icons/menu/Home/Patient/form/iconpatient.png</file>
         <file>icons/menu/Home/Salle/form/clock.png</file>
+        <file>icons/menu/Home/Med/form/pill.png</file>
+        <file>icons/menu/Home/Para/form/para.png</file>
     </qresource>
     <qresource prefix="/pp"/>
     <qresource prefix="/icons"/>

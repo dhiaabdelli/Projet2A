@@ -10,7 +10,8 @@
 #include "patient.h"
 #include "convention.h"
 #include "salle.h"
-
+#include "medicament.h"
+#include "para.h"
 #include <QRegExp>
 #include <QTcpSocket>
 namespace Ui {
@@ -71,6 +72,9 @@ private slots:
     void slot_table_clickedPatient(int num);
     void slot_table_clickedConvention(int num);
     void slot_table_clickedsalle(int num);
+    void slot_table_clickedmed(int num);
+    void slot_table_clickedpara(int num);
+
     void connected(QString);
     void readyRead();
     void on_backBtn_clicked();
@@ -203,6 +207,36 @@ private slots:
 
     void on_SallebtnDelete_clicked();
 
+    void on_btnmedBackHome_clicked();
+
+    void on_MedicamentBtnG_clicked();
+
+    void on_btnAddService_3_clicked();
+
+    void on_lineEdit_8_textChanged(const QString &arg1);
+
+    void on_btnBackHomePatient_7_clicked();
+
+    void on_BtnMedAdd_clicked();
+
+    void on_tabmed_activated(const QModelIndex &index);
+
+    void on_MedbtnUpdate_clicked();
+
+    void on_MedbtnDelete_clicked();
+
+    void on_btnmedBackHome_2_clicked();
+
+    void on_btnBackHomePatient_9_clicked();
+
+    void on_BtnParaAdd_clicked();
+
+    void on_ParaMedicalBtnG_clicked();
+
+    void on_btnAddService_4_clicked();
+
+    void on_lineEdit_9_textChanged(const QString &arg1);
+
 private:
     Ui::Interface *ui;
     QWidget* parent;
@@ -214,6 +248,8 @@ private:
     patient tmpPatient;
     convention tmpConvention;
     salle tmpsalle;
+    Medicament tmpmed;
+    Para tmpPara;
     QString pagetitle;
     QPushButton* btncurrent;
     QTcpSocket *socket;

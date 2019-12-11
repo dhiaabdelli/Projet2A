@@ -26,6 +26,8 @@ Interface::Interface(QWidget* parent,int type,QString nom) :
     ui->tabPatient->setModel(tmpPatient.afficher());
     ui->tabConvention->setModel(tmpConvention.afficher());
     ui->tabsalle->setModel(tmpsalle.afficher());
+    ui->tabmed->setModel(tmpmed.afficher());
+    ui->tabpara->setModel(tmpPara.afficher());
 
     ui->tabpersonnel->verticalHeader()->setVisible(false);
     ui->tabpersonnel->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -86,6 +88,21 @@ Interface::Interface(QWidget* parent,int type,QString nom) :
     ui->tabsalle->setShowGrid(false);
     ui->tabsalle->verticalHeader()->setSectionsClickable(true);
     ui->tabsalle->horizontalHeader()->setSectionsClickable(true);
+
+
+    ui->tabmed->verticalHeader()->setVisible(false);
+    ui->tabmed->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tabmed->setAlternatingRowColors(true);
+    ui->tabmed->setShowGrid(false);
+    ui->tabmed->verticalHeader()->setSectionsClickable(true);
+    ui->tabmed->horizontalHeader()->setSectionsClickable(true);
+
+    ui->tabpara->verticalHeader()->setVisible(false);
+    ui->tabpara->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tabpara->setAlternatingRowColors(true);
+    ui->tabpara->setShowGrid(false);
+    ui->tabpara->verticalHeader()->setSectionsClickable(true);
+    ui->tabpara->horizontalHeader()->setSectionsClickable(true);
 
     adminpersonnel p;
     Materiel m;
@@ -153,6 +170,12 @@ Interface::Interface(QWidget* parent,int type,QString nom) :
 
     connect(ui->tabsalle->verticalHeader(), SIGNAL(sectionClicked(int)),this, SLOT(slot_table_clickedsalle(int)));
     connect(ui->tabsalle->horizontalHeader(), SIGNAL(sectionClicked(int)),this, SLOT(slot_table_clickedsalle(int)));
+
+    connect(ui->tabmed->verticalHeader(), SIGNAL(sectionClicked(int)),this, SLOT(slot_table_clickedmed(int)));
+    connect(ui->tabmed->horizontalHeader(), SIGNAL(sectionClicked(int)),this, SLOT(slot_table_clickedmed(int)));
+
+    connect(ui->tabpara->verticalHeader(), SIGNAL(sectionClicked(int)),this, SLOT(slot_table_clickedpara(int)));
+    connect(ui->tabpara->horizontalHeader(), SIGNAL(sectionClicked(int)),this, SLOT(slot_table_clickedpara(int)));
 
     socket = new QTcpSocket(this);
 
@@ -360,6 +383,36 @@ void Interface::slot_table_clickedsalle(int num){
     }
 }
 
+void Interface::slot_table_clickedmed(int num){
+    switch(num){
+        case 0:{
+            ui->tabmed->setModel(tmpmed.trie(1));
+            break;
+        }
+        case 1:{
+            ui->tabmed->setModel(tmpmed.trie(2));
+            break;
+        }
+        case 2:{
+            ui->tabmed->setModel(tmpmed.trie(3));
+            break;
+        }
+    }
+}
+
+void Interface::slot_table_clickedpara(int num){
+    switch(num){
+        case 0:{
+            ui->tabpara->setModel(tmpPara.trier(1));
+            break;
+        }
+        case 1:{
+            ui->tabpara->setModel(tmpPara.trier(2));
+            break;
+        }
+    }
+}
+
 Interface::~Interface()
 {
     delete ui;
@@ -428,9 +481,11 @@ void Interface::load2(){
 
 void Interface::load3(){
     ui->combo_IDFour->clear();
+    ui->combo_IDFour_2->clear();
     QSqlQueryModel* model = new QSqlQueryModel;
     model->setQuery("select id from fournisseur");
     ui->combo_IDFour->setModel(model);
+    ui->combo_IDFour_2->setModel(model);
 }
 void Interface::on_btnAdmin_clicked()
 {
@@ -1213,4 +1268,137 @@ void Interface::on_SallebtnDelete_clicked()
      }else{
          ui->Hometabs->setCurrentIndex(16);
      }
+}
+
+void Interface::on_btnmedBackHome_clicked()
+{
+     ui->Hometabs->setCurrentIndex(0);
+}
+
+void Interface::on_MedicamentBtnG_clicked()
+{
+    ui->Hometabs->setCurrentIndex(19);
+}
+
+void Interface::on_btnAddService_3_clicked()
+{
+    ui->Hometabs->setCurrentIndex(20);
+}
+
+void Interface::on_lineEdit_8_textChanged(const QString &arg1)
+{
+    if(arg1 == ""){
+       ui->tabmed->setModel(tmpmed.afficher());
+    }else{
+       ui->tabmed->setModel(tmpmed.recherche(arg1));
+    }
+}
+
+void Interface::on_btnBackHomePatient_7_clicked()
+{
+    ui->Hometabs->setCurrentIndex(19);
+}
+
+void Interface::on_BtnMedAdd_clicked()
+{
+    QString ref = ui->lineEdit_refMed->text();
+    QString nom = ui->lineEdit_nomMed->text();
+    QString idfour = ui->combo_IDFour_2->currentText();
+    Medicament m(ref,nom,idfour);
+    bool test=m.ajouter();
+    if(test){
+        ui->tabmed->setModel(tmpmed.afficher());
+        ui->Hometabs->setCurrentIndex(19);
+    }
+}
+
+void Interface::on_tabmed_activated(const QModelIndex &index)
+{
+    QString val=ui->tabmed->model()->data(index).toString();
+
+    QSqlQuery query;
+    query.prepare("select nom,idfour from medicament where ref = :ref;");
+    query.bindValue(":ref",val);
+
+    if(query.exec())
+    {
+        if(query.first())
+        {
+              ui->lineEdit_nomMed_2->setText(query.value(0).toString());
+              ui->InfoConvetionIDF_2->setText(query.value(1).toString());
+              ui->lineEdit_refMed_2->setText(val);
+              ui->Hometabs->setCurrentIndex(21);
+        }
+
+     }
+}
+
+void Interface::on_MedbtnUpdate_clicked()
+{
+    QString ref = ui->lineEdit_refMed_2->text();
+    QString nom = ui->lineEdit_nomMed_2->text();
+    QString idfour = ui->InfoConvetionIDF_2->text();
+    Medicament m;
+    if(m.rech(ref)){
+        bool test = m.modifier(ref,nom,idfour);
+        if(test){
+            ui->tabmed->setModel(tmpmed.afficher());
+            ui->Hometabs->setCurrentIndex(19);
+        }
+     }
+}
+
+void Interface::on_MedbtnDelete_clicked()
+{
+    Medicament m;
+    if(m.rech(ui->lineEdit_refMed_2->text())){
+      bool test=tmpmed.supprimer(ui->lineEdit_refMed_2->text());
+      if(test){
+            ui->tabmed->setModel(tmpmed.afficher());
+            ui->Hometabs->setCurrentIndex(19);
+        }
+     }else{
+         ui->Hometabs->setCurrentIndex(19);
+     }
+}
+
+void Interface::on_btnmedBackHome_2_clicked()
+{
+    ui->Hometabs->setCurrentIndex(0);
+}
+
+void Interface::on_btnBackHomePatient_9_clicked()
+{
+    ui->Hometabs->setCurrentIndex(22);
+}
+
+void Interface::on_BtnParaAdd_clicked()
+{
+    QString ref = ui->lineEdit_refPara->text();
+    QString type = ui->lineEdit_typePara->text();
+    Para p(ref,type);
+    bool test=p.ajouter();
+    if(test){
+        ui->tabpara->setModel(tmpPara.afficher());
+        ui->Hometabs->setCurrentIndex(22);
+    }
+}
+
+void Interface::on_ParaMedicalBtnG_clicked()
+{
+    ui->Hometabs->setCurrentIndex(22);
+}
+
+void Interface::on_btnAddService_4_clicked()
+{
+    ui->Hometabs->setCurrentIndex(23);
+}
+
+void Interface::on_lineEdit_9_textChanged(const QString &arg1)
+{
+    if(arg1 == ""){
+       ui->tabpara->setModel(tmpPara.afficher());
+    }else{
+       ui->tabpara->setModel(tmpPara.rechercher(arg1));
+    }
 }
